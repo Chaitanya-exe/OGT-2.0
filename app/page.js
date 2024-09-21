@@ -1,6 +1,21 @@
+"use client";
+import Link from "next/link";
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 export default function Home() {
+  const { data: session } = useSession();
+  const [providers, setProviders] = useState(null);
+
+  useEffect(() => {
+    const setUpProviders = async () => {
+      const response = await getProviders();
+      setProviders(response);
+    }
+    setUpProviders();
+
+  }, [])
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
@@ -9,22 +24,33 @@ export default function Home() {
           <code className="font-mono font-bold">app/page.js</code>
         </p>
         <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+          <div className="sm:flex hidden">
+            {session?.user ? (
+              <div className="flex gap-3 md:gap-5">
+
+                <button type="button" className="outline_btn" onClick={() => signOut()}>
+                  sign out
+                </button>
+                <Link href="/">
+                  <Image
+                    src={session?.user.image}
+                    alt="profile"
+                    width={37}
+                    height={37}
+                    className="rounded-full"
+                  />
+                </Link>
+              </div>
+            ) : (<>{providers && Object.values(providers).map((provider) => {
+              return (
+                <button
+                  className="black_btn"
+                  type="button"
+                  key={provider.name}
+                  onClick={() => signIn(provider.id)}> Sign In</button>
+              )
+            })}</>)}
+          </div>
         </div>
       </div>
 
