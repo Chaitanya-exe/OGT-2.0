@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String   @id @default(uuid())
+  username    String
+  name        String
+  email       String
+  img         String
+  role        Role     @default(NULL)
+  skills      String[] @default([""])
+  DOB         DateTime @default(now())
+  description String   @default("")
+  country     String   @default("")
+  phNumber    String   @default("")
+
+  projects Project[]
+  reviews  Reviews[]
+}
+
+model Project {
+  id          String      @id @default(uuid())
+  title       String
+  description String
+  postedBy    User        @relation(fields: [postedById], references: [id])
+  postedById  String
+  requests    String[]    @default([""])
+  deliverBy   DateTime    @default(now())
+  category    String
+  isCompleted IsCompleted @default(FALSE)
+
+  tasks Task[]
+}
+
+model Task {
+  id        String  @id @default(uuid())
+  task      String
+  status    Status  @default(NOT_STARTED)
+  project   Project @relation(fields: [projectId], references: [id])
+  projectId String
+}
+
+model Reviews {
+  id          String @id @default(uuid())
+  postedBy    User   @relation(fields: [postedById], references: [id])
+  postedById  String
+  workerId    String
+  rating      Float
+  description String
+}
+
+enum Role {
+  CLIENT
+  WORKER
+  NULL
+}
+
+enum IsCompleted {
+  TRUE
+  FALSE
+}
+
+enum Status {
+  NOT_STARTED
+  ONGOING
+  COMPLETED
+}
