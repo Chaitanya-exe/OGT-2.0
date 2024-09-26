@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import Button from "./ui/Button";
+import { signIn } from "next-auth/react";
 
 const Header = () => {
   return (
@@ -37,7 +40,10 @@ const Header = () => {
             </a>
 
             <div className="flex gap-2 items-center">
+            <button onClick={()=> signIn()}>
               <Button type="primary" text="Login" />
+
+            </button>
               <Button type="secondary" text="Signup" />
             </div>
           </div>
