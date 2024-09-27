@@ -8,8 +8,7 @@ import Button from './ui/Button';
 const HeroSection = () => {
   return (
     <motion.div
-    //   {...headContainerAnimation}
-      className="max-w-5xl py-16 mx-auto text-center flex flex-col gap-5 items-center"
+      className="max-w-5xl mt-16 mx-auto text-center flex flex-col gap-5 items-center"
     >
       <motion.h2 {...headTextAnimation} className="">
         <span className="heroOgt text-white">ogt</span>

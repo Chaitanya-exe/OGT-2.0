@@ -40,11 +40,10 @@ const Header = () => {
             </a>
 
             <div className="flex gap-2 items-center">
-            <button onClick={()=> signIn()}>
-              <Button type="primary" text="Login" />
-
-            </button>
-              <Button type="secondary" text="Signup" />
+              <button onClick={() => signIn()}>
+                <Button type="primary" text="Login" className=" w-[106px]" />
+              </button>
+              <Button type="secondary" text="Signup" className="w-[106px]" />
             </div>
           </div>
         </div>

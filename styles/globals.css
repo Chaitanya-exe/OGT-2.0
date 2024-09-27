@@ -19,7 +19,7 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+ color: rgb(var(--foreground-rgb));
  font-family: "Poppins", sans-serif;
   /* background: linear-gradient(
       to bottom,
@@ -41,9 +41,7 @@ body {
   }
 
   .primary_button {
-    /* padding: 3px; */
-
-    width: 106px;
+    /* width: 106px; */
     height: 44px;
     background: rgba(234, 234, 234, 0.1);
     border: 1px solid rgba(234, 234, 234, 0.2);
@@ -51,7 +49,7 @@ body {
     cursor: pointer;
   }
   .secondary_button {
-    width: 106px;
+    /* width: 106px; */
     height: 44px;
     cursor: pointer;
 
@@ -219,6 +217,19 @@ font-size: 30px;
 line-height: 20px;
 color: #B0B0B0;
   }
-}
+  .testiCard{
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 15px 11px;
+gap: 10px;
 
+width: 412px;
+height: 210.27px;
+
+background: linear-gradient(4.96deg, rgba(255, 255, 255, 0.04) 19.52%, rgba(255, 255, 255, 0) 77.45%);
+border: 1px solid rgba(234, 234, 234, 0.2);
+border-radius: 11px;
+}
+}
 
