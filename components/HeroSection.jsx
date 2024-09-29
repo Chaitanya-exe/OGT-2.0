@@ -2,7 +2,7 @@
 
 import React from 'react'
 import {motion} from "framer-motion"
-import { headContainerAnimation, headContentAnimation, headTextAnimation } from '@/config/motion';
+import { fadeAnimation, headContainerAnimation, headContentAnimation, headTextAnimation } from '@/config/motion';
 import Button from './ui/Button';
 
 const HeroSection = () => {
@@ -27,11 +27,11 @@ const HeroSection = () => {
         borders. For the businesses and startups it's great market place for the
         services which will make your business easier for you.
       </motion.h4>
-      <div className="flex w-fit bg-e1/10 
+      <motion.div {...fadeAnimation} className="flex w-fit bg-e1/10 
  border border-e1/20 rounded-full p-1">
         <button text="Developer" className="l1_button bg-l1 ">Developer</button>
         <button className='l1_button'>Employer</button>
-      </div>
+      </motion.div>
     </motion.div>
   );
 }

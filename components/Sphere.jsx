@@ -6,16 +6,17 @@ import Trusted from "./Trusted";
 import { fadeAnimation } from "@/config/motion";
 
 const Sphere = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  // const ref = useRef(null);
+  // const isInView = useInView(ref, { once: true });
 
   return (
     <section className="mx-8 bg-fixed relative text-center items-center flex gap-5 flex-col min-h-[70vh] ">
       <motion.div
-        ref={ref}
+        // ref={ref}
         initial={{ scale: 2, opacity: 0, rotate: 90 }}
-        animate={isInView ? { scale: 1, opacity: 1, rotate: 0 } : {}}
-        transition={{ duration: 1.4, delay: 0.5 }}
+        whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
+        viewport={{once: true}}
+        transition={{ duration: 2, delay: 0.8}}
         className="absolute -top-24 left-[25vw] -z-10">
         <Image src={"/sphere.png"} alt="spere svg here" width={700} height={500} />
       </motion.div>

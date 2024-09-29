@@ -5,6 +5,9 @@ import Image from "next/image";
 import React, { useState } from "react";
 import Rating from "@mui/material/Rating";
 import Button from "../ui/Button";
+import {motion} from "framer-motion"
+import { fadeAnimation } from "@/config/motion";
+
 
 const Testimonials = () => {
   const [visibleCount, setVisibleCount] = useState(2);
@@ -40,7 +43,6 @@ const Testimonials = () => {
           ))}
         </div>
 
-        {/* Column 3 */}
         <div className="flex flex-col mt-14 gap-6">
           {column3.map((item, index) => (
             <Card item={item} index={index} />
@@ -66,7 +68,7 @@ export default Testimonials;
 
 const Card = ({ item, index }) => {
   return (
-    <div
+    <motion.div {...fadeAnimation}
       key={index}
       className={`testiCard shadow-l2/10 shadow-lg  hover:shadow-[0px_2px_30px_#203752]`}
     >
@@ -89,6 +91,6 @@ const Card = ({ item, index }) => {
           },
         }}
       />
-    </div>
+    </motion.div>
   );
 };

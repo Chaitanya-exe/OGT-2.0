@@ -3,9 +3,14 @@
 import React from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import Button from "./ui/Button";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import Image from "next/image";
+
 
 const Header = () => {
+  const {data : session} = useSession();
+
+
   return (
     <nav className="pb-[1px] px-2 relative bg-gradient-to-r from-bgColor via-pink-400 to-bgColor">
       <div className="bg-bgColor py-1 ">
@@ -38,6 +43,9 @@ const Header = () => {
               Help
               <IoIosArrowDown className="inline-flex mx-2" />
             </a>
+            {session?.user ? (
+              <Image src={session.user.image} width={27} height={27} alt={session.user.name.charAt(0).toUpperCase()} className="" />
+            ) : (
 
             <div className="flex gap-2 items-center">
               <button onClick={() => signIn()}>
@@ -45,6 +53,8 @@ const Header = () => {
               </button>
               <Button type="secondary" text="Signup" className="w-[106px]" />
             </div>
+            )}
+
           </div>
         </div>
       </div>
