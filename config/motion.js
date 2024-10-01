@@ -1,6 +1,5 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -56,7 +55,7 @@ export const headTextAnimation = {
 };
 
 export const headContentAnimation = {
-  initial: { y: 100, opacity: 0 },
+  initial: { y: 30, opacity: 0 },
   animate: { y: 0, opacity: 1 },
   transition: {
     type: "spring",

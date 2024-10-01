@@ -1,10 +1,10 @@
 
 import Tabs from "@/components/Tabs";
-import Video from "@/components/Video";
 import HeroSection from "@/components/HeroSection";
 import Sphere from "@/components/Sphere";
 import Index from "@/components/Steps/Index";
 import Testimonials from "@/components/Steps/Testimonials";
+import EgVideo from "@/components/EgVideo";
 
 export default function Home() {
  
@@ -16,7 +16,7 @@ export default function Home() {
         <Tabs direction="left" />
         <Tabs direction="right" />
       </div>
-      <Video />
+      <EgVideo />
       <Sphere/>
       <Index/>
       <Testimonials/>

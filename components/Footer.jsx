@@ -30,7 +30,7 @@ const Footer = () => {
       ))}
       <div className="space-y-3">
         <h2 className="text-[18px]">Join the community</h2>
-        <div className="space-y-3 *:size-6 text-BO cursor-pointer">
+        <div className="gap-4 flex *:size-6 text-BO cursor-pointer">
           <RxDiscordLogo className="hover:text-white" />
           <IoLogoInstagram className="hover:text-white" />
         </div>
