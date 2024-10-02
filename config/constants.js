@@ -1,4 +1,3 @@
-
 export const services = [
   {
     id: 1,
@@ -224,5 +223,52 @@ export const footerDummyData = [
   {
     name: "resources",
     list: ["Free courses", "blogs"],
+  },
+];
+
+export const projectsData = [
+  {
+    id: 1,
+    companyName: "Google",
+    companyNote:
+      "Short company description To display an array of skills separated by commas, you can use the join() method in JavaScript, which concatenates array elements into a string with a specified separator.",
+    role: "cyber security",
+    stipend: "100$",
+    timeline: "1 month",
+    skills: ["WebScraping", "injections", "buffering", "NLP"],
+    requirements: ["Landing page", "Home Page"],
+    applicants: "100",
+    status: "Active",
+    postedOn: "20/4/24",
+  },
+  {
+    id: 2,
+    companyName: "Google",
+    companyNote:
+      "Short company description To display an array of skills separated by commas, you can use the join() method in JavaScript, which concatenates array elements into a string with a specified separator.",
+    role: "cyber security",
+    stipend: "100$",
+    timeline: "1 month",
+    skills: ["WebScraping", "injections", "buffering", "NLP"],
+    applicants: "100",
+    requirements: ["Landing page", "Home Page"],
+    postedOn: "20/4/24",
+
+    status: "Active",
+  },
+  {
+    id: 3,
+    companyName: "Google",
+    companyNote:
+      "Short company description To display an array of skills separated by commas, you can use the join() method in JavaScript, which concatenates array elements into a string with a specified separator.",
+    role: "cyber security",
+    stipend: "100$",
+    timeline: "1 month",
+    skills: ["WebScraping", "injections", "buffering", "NLP"],
+    requirements: ["Landing page", "Home Page"],
+
+    applicants: "100",
+    status: "Active",
+    postedOn: "20/4/24",
   },
 ];
