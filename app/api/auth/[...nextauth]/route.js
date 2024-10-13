@@ -1,11 +1,11 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaClient } from "@prisma/client";
-import { write, writeFileSync } from "fs";
-import path from "path";
 
+const userClient = new PrismaClient();
 
 const handler = NextAuth({
+    // adapter: PrismaAdapter(userClient),
     providers: [
         GoogleProvider({
             clientId: process.env.CLIENT_ID,
@@ -16,7 +16,6 @@ const handler = NextAuth({
     callbacks: {
         async session({ session }) {
             try {
-                const userClient = new PrismaClient();
                 const sessionUser = await userClient.users.findUnique({
                     where: {
                         email: session.user.email,

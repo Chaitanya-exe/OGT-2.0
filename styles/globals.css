@@ -19,7 +19,7 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+ color: rgb(var(--foreground-rgb));
  font-family: "Poppins", sans-serif;
   /* background: linear-gradient(
       to bottom,
@@ -41,9 +41,7 @@ body {
   }
 
   .primary_button {
-    /* padding: 3px; */
-
-    width: 106px;
+    /* width: 106px; */
     height: 44px;
     background: rgba(234, 234, 234, 0.1);
     border: 1px solid rgba(234, 234, 234, 0.2);
@@ -51,7 +49,7 @@ body {
     cursor: pointer;
   }
   .secondary_button {
-    width: 106px;
+    /* width: 106px; */
     height: 44px;
     cursor: pointer;
 
@@ -80,7 +78,7 @@ body {
     border-radius: 24px;
   }
   .l1_button{
-width: 120px;
+width: 108px;
 height: 44px;
 border-radius: 24px;
   }
@@ -219,6 +217,60 @@ font-size: 30px;
 line-height: 20px;
 color: #B0B0B0;
   }
+  .testiCard{
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+padding: 15px 11px;
+gap: 10px;
+
+width: 412px;
+height: 210.27px;
+
+background: linear-gradient(4.96deg, rgba(255, 255, 255, 0.04) 19.52%, rgba(255, 255, 255, 0) 77.45%);
+border: 1px solid rgba(234, 234, 234, 0.2);
+border-radius: 11px;
 }
 
+/* START: searchbar styles */
+.searchbar {
+  @apply flex items-center justify-start max-sm:flex-col w-full relative max-sm:gap-4 max-w-3xl;
+}
+
+.searchbar__item {
+  @apply flex-1 max-sm:w-full flex justify-start items-center relative;
+}
+
+.searchbar__input {
+  @apply bg-white/5 text-white  w-fit pl-12 p-4 rounded-full max-sm:rounded-full outline-none cursor-pointer text-sm;
+}
+/* END: searchbar styles */
+
+/* START: search manufacturer styles */
+.search-manufacturer {
+  @apply flex-1 max-sm:w-full flex justify-start items-center;
+}
+
+.search-manufacturer__input {
+  @apply w-full h-[48px] pl-12 p-4 rounded-l-full max-sm:rounded-full bg-light-white outline-none cursor-pointer text-sm;
+}
+
+.search-manufacturer__options {
+  @apply absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm;
+}
+
+.search-manufacturer__option {
+  @apply cursor-default select-none py-2 pl-10 pr-4;
+}
+/* END: search manufacturer styles */
+
+
+.projectCard{
+filter: drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.13));
+backdrop-filter: blur(78px);
+}
+
+
+
+}
 

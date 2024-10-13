@@ -2,14 +2,13 @@
 
 import React from 'react'
 import {motion} from "framer-motion"
-import { headContainerAnimation, headContentAnimation, headTextAnimation } from '@/config/motion';
+import { fadeAnimation, headContainerAnimation, headContentAnimation, headTextAnimation } from '@/config/motion';
 import Button from './ui/Button';
 
 const HeroSection = () => {
   return (
     <motion.div
-    //   {...headContainerAnimation}
-      className="max-w-5xl py-16 mx-auto text-center flex flex-col gap-5 items-center"
+      className="max-w-5xl mt-16 mx-auto text-center flex flex-col gap-5 items-center"
     >
       <motion.h2 {...headTextAnimation} className="">
         <span className="heroOgt text-white">ogt</span>
@@ -28,10 +27,11 @@ const HeroSection = () => {
         borders. For the businesses and startups it's great market place for the
         services which will make your business easier for you.
       </motion.h4>
-      <div className="flex w-fit bg-e1/10 border border-e1/20 rounded-full p-1">
-        <Button text="Developer" className="l1_button bg-l1 " />
-        <Button text="Employer" className="l1_button " />
-      </div>
+      <motion.div {...fadeAnimation} className="flex w-fit bg-e1/10 
+ border border-e1/20 rounded-full p-1">
+        <button text="Developer" className="l1_button bg-l1 ">Developer</button>
+        <button className='l1_button'>Employer</button>
+      </motion.div>
     </motion.div>
   );
 }

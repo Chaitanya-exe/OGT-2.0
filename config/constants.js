@@ -25,7 +25,6 @@ export const services = [
   },
 ];
 
-
 export const tabs = [
   "Home",
   "About",
@@ -43,3 +42,233 @@ export const tabs = [
   "Shop",
 ];
 
+export const StepsData = [
+  {
+    id: "1",
+    role: "developer",
+    tabNames: [
+      {
+        id: 1,
+        name: "Post your job",
+      },
+      {
+        id: 2,
+        name: "Choose your developer",
+      },
+      {
+        id: 3,
+        name: "delivery upon conformation",
+      },
+    ],
+    content: [
+      {
+        tab: "1",
+        array: [
+          {
+            point: "Craft a Compelling Project Description :",
+            text: "Start by providing a clear and concise title for your project. Next, fill out the project description, outlining the specific requirements, desired skills, and timeline for completion.",
+          },
+          {
+            point: "Craft a Compelling Project Description :",
+            text: "Start by providing a clear and concise title for your project. Next, fill out the project description, outlining the specific requirements, desired skills, and timeline for completion.",
+          },
+        ],
+      },
+
+      {
+        tab: "2",
+        array: [
+          {
+            point: "Craft a Compelling Project Description :",
+            text: "Start by providing a clear and concise title for your project. Next, fill out the project description, outlining the specific requirements, desired skills, and timeline for completion.",
+          },
+          {
+            point: "Craft a Compelling Project Description :",
+            text: "Start by providing a clear and concise title for your project. Next, fill out the project description, outlining the specific requirements, desired skills, and timeline for completion.",
+          },
+          {
+            point: "Craft a Compelling Project Description :",
+            text: "Start by providing a clear and concise title for your project. Next, fill out the project description, outlining the specific requirements, desired skills, and timeline for completion.",
+          },
+        ],
+      },
+      {
+        tab: "3",
+        array: [
+          {
+            point: "Craft a Compelling Project Description :",
+            text: "Start by providing a clear and concise title for your project. Next, fill out the project description, outlining the specific requirements, desired skills, and timeline for completion.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "2",
+    role: "client",
+    tabNames: [
+      "Post your job",
+      "Choose ypur developer",
+      "delivery upon conformation",
+    ],
+    content: [
+      {
+        point: "Craft a Compelling Project Description :",
+        text: "Start by providing a clear and concise title for your project. Next, fill out the project description, outlining the specific requirements, desired skills, and timeline for completion.",
+      },
+      {
+        point: "Craft a Compelling Project Description :",
+        text: "Start by providing a clear and concise title for your project. Next, fill out the project description, outlining the specific requirements, desired skills, and timeline for completion.",
+      },
+    ],
+  },
+];
+
+export const testimonialData = [
+  {
+    id: 1,
+    userName: "Rashmi",
+    company: "RSMI",
+    feedback:
+      "Start by providing a clear and concise title for your project. Next, fill out the project description, outlining the specific requirements, desired skills, and timeline for completion.",
+    ratingCount: 4,
+  },
+  {
+    id: 2,
+    userName: "Rashmi",
+    company: "RSMI",
+    feedback:
+      "Start by providing a clear and concise title for your project. Next, fill out the project description, outlining the specific requirements, desired skills, and timeline for completion.",
+    ratingCount: 3,
+  },
+  {
+    id: 3,
+    userName: "Rashmi",
+    company: "RSMI",
+    feedback:
+      "Start by providing a clear and concise title for your project. Next, fill out the project description, outlining the specific requirements, desired skills, and timeline for completion.",
+    ratingCount: 4,
+  },
+  {
+    id: 4,
+    userName: "Rashmi",
+    company: "RSMI",
+    feedback:
+      "Start by providing a clear and concise title for your project. Next, fill out the project description, outlining the specific requirements, desired skills, and timeline for completion.",
+    ratingCount: 4,
+  },
+  {
+    id: 5,
+    userName: "Rashmi",
+    company: "RSMI",
+    feedback:
+      "Start by providing a clear and concise title for your project. Next, fill out the project description, outlining the specific requirements, desired skills, and timeline for completion.",
+    ratingCount: 4,
+  },
+  {
+    id: 6,
+    userName: "Rashmi",
+    company: "RSMI",
+    feedback:
+      "Start by providing a clear and concise title for your project. Next, fill out the project description, outlining the specific requirements, desired skills, and timeline for completion.",
+    ratingCount: 4,
+  },
+  {
+    id: 7,
+    userName: "Rashmi",
+    company: "RSMI",
+    feedback:
+      "Start by providing a clear and concise title for your project. Next, fill out the project description, outlining the specific requirements, desired skills, and timeline for completion.",
+    ratingCount: 4,
+  },
+  {
+    id: 8,
+    userName: "Rashmi",
+    company: "RSMI",
+    feedback:
+      "Start by providing a clear and concise title for your project. Next, fill out the project description, outlining the specific requirements, desired skills, and timeline for completion.",
+    ratingCount: 4,
+  },
+  {
+    id: 9,
+    userName: "Rashmi",
+    company: "RSMI",
+    feedback:
+      "Start by providing a clear and concise title for your project. Next, fill out the project description, outlining the specific requirements, desired skills, and timeline for completion.",
+    ratingCount: 4,
+  },
+  {
+    id: 10,
+    userName: "Rashmi",
+    company: "RSMI",
+    feedback:
+      "Start by providing a clear and concise title for your project. Next, fill out the project description, outlining the specific requirements, desired skills, and timeline for completion.",
+    ratingCount: 4,
+  },
+  {
+    id: 11,
+    userName: "Rashmi",
+    company: "RSMI",
+    feedback:
+      "Start by providing a clear and concise title for your project. Next, fill out the project description, outlining the specific requirements, desired skills, and timeline for completion.",
+    ratingCount: 4,
+  },
+];
+
+export const footerDummyData = [
+  {
+    name: "Help & support",
+    list: ["about", "Why ogt?", "email", "faqs", "terms & services"],
+  },
+  {
+    name: "resources",
+    list: ["Free courses", "blogs"],
+  },
+];
+
+export const projectsData = [
+  {
+    id: 1,
+    companyName: "Google",
+    companyNote:
+      "Short company description To display an array of skills separated by commas, you can use the join() method in JavaScript, which concatenates array elements into a string with a specified separator.",
+    role: "cyber security",
+    stipend: "100$",
+    timeline: "1 month",
+    skills: ["WebScraping", "injections", "buffering", "NLP"],
+    requirements: ["Landing page", "Home Page"],
+    applicants: "100",
+    status: "Active",
+    postedOn: "20/4/24",
+  },
+  {
+    id: 2,
+    companyName: "Google",
+    companyNote:
+      "Short company description To display an array of skills separated by commas, you can use the join() method in JavaScript, which concatenates array elements into a string with a specified separator.",
+    role: "cyber security",
+    stipend: "100$",
+    timeline: "1 month",
+    skills: ["WebScraping", "injections", "buffering", "NLP"],
+    applicants: "100",
+    requirements: ["Landing page", "Home Page"],
+    postedOn: "20/4/24",
+
+    status: "Active",
+  },
+  {
+    id: 3,
+    companyName: "Google",
+    companyNote:
+      "Short company description To display an array of skills separated by commas, you can use the join() method in JavaScript, which concatenates array elements into a string with a specified separator.",
+    role: "cyber security",
+    stipend: "100$",
+    timeline: "1 month",
+    skills: ["WebScraping", "injections", "buffering", "NLP"],
+    requirements: ["Landing page", "Home Page"],
+
+    applicants: "100",
+    status: "Active",
+    postedOn: "20/4/24",
+  },
+];

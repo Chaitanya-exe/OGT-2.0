@@ -1,6 +1,5 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -31,9 +30,9 @@ export const slideAnimation = (direction) => {
 export const fadeAnimation = {
   initial: {
     opacity: 0,
-    transition: { ...transition, delay: 0.5 },
+    transition: { ...transition, delay: 0.6 },
   },
-  animate: {
+  whileInView: {
     opacity: 1,
     transition: { ...transition, delay: 0 },
   },
@@ -56,7 +55,7 @@ export const headTextAnimation = {
 };
 
 export const headContentAnimation = {
-  initial: { y: 100, opacity: 0 },
+  initial: { y: 30, opacity: 0 },
   animate: { y: 0, opacity: 1 },
   transition: {
     type: "spring",
@@ -75,7 +74,7 @@ export const headContainerAnimation = {
   exit: { x: -100, opacity: 0, transition: { ...transition, delay: 0 } },
 };
 
-export const animateFromX = (h1Class, h2Class, delayBetween = 0.3) => {
+export const animateFromX = (h1Class, h2Class, delayBetween = 0.5) => {
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: `.${h1Class}`, // Start animation when this element enters the viewport
@@ -88,13 +87,13 @@ export const animateFromX = (h1Class, h2Class, delayBetween = 0.3) => {
   tl.fromTo(
     `.${h1Class}`,
     { x: "-100%", opacity: 0 }, 
-    { x: 0, opacity: 1, duration: 1, ease: "power3.out" } 
+    { x: 0, opacity: 1, duration: 0.8, ease: "power3.out" } 
   );
 
   tl.fromTo(
     `.${h2Class}`,
     { x: "-100%", opacity: 0 }, 
-    { x: 0, opacity: 1, duration: 1.4, ease: "power3.out" },
+    { x: 0, opacity: 1, duration: 1, ease: "power3.out" },
     `+=${delayBetween}` 
   );
 };
