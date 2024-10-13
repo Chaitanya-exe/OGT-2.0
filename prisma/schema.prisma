@@ -13,11 +13,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model Users {
   id          String   @id @default(uuid())
-  username    String
+  Username    String
   name        String
-  email       String
+  email       String   @unique()
   img         String
   role        Role     @default(NULL)
   skills      String[] @default([""])
@@ -34,7 +34,7 @@ model Project {
   id          String      @id @default(uuid())
   title       String
   description String
-  postedBy    User        @relation(fields: [postedById], references: [id])
+  postedBy    Users       @relation(fields: [postedById], references: [id])
   postedById  String
   requests    String[]    @default([""])
   deliverBy   DateTime    @default(now())
@@ -54,7 +54,7 @@ model Task {
 
 model Reviews {
   id          String @id @default(uuid())
-  postedBy    User   @relation(fields: [postedById], references: [id])
+  postedBy    Users  @relation(fields: [postedById], references: [id])
   postedById  String
   workerId    String
   rating      Float
