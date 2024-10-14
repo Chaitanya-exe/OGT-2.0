@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import { IoIosCheckmark } from "react-icons/io";
 import { MdKeyboardArrowDown } from "react-icons/md";
-
 
 import {
   Combobox,
@@ -15,14 +14,41 @@ import {
 } from "@headlessui/react";
 import Image from "next/image";
 import { tabs } from "@/config/constants";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const Searchcategory = () => {
+  const [category, setcategory] = useState();
+  const [query, setQuery] = useState("");
+  const router = useRouter();
+  const searchParams= useSearchParams();
+  const pathname = usePathname();
 
-    const [category,setcategory] = useState();
-    const [query,setQuery] = useState("");
-    
 
-     const filteredmanufacturees =
+
+  const updateCategoryParam = () => {
+    const params = new URLSearchParams(window.location.search)
+    if(category){
+      params.set('category',category);
+
+    }else{
+      params.delete('category');
+    }
+
+   const newPathname = `${
+      window.location.pathname
+    }?${params.toString()}`;
+
+    router.push(newPathname);
+  };
+
+
+ useEffect(() => {
+  updateCategoryParam();
+
+ },[category])
+
+
+  const filteredCategory =
     query === ""
       ? tabs
       : tabs.filter((item) =>
@@ -31,7 +57,6 @@ const Searchcategory = () => {
             .replace(/\s+/g, "")
             .includes(query.toLowerCase().replace(/\s+/g, ""))
         );
-
 
   return (
     <div className="search-category">
@@ -54,7 +79,7 @@ const Searchcategory = () => {
             onChange={(e) => setQuery(e.target.value)}
           />
 
-<MdKeyboardArrowDown className="absolute top-[16px] right-4 size-5" />
+          <MdKeyboardArrowDown className="absolute top-[16px] right-4 size-5" />
 
           <Transition
             as={Fragment}
@@ -68,7 +93,7 @@ const Searchcategory = () => {
               static
             >
               {
-                filteredmanufacturees.map((item) => (
+                filteredCategory.map((item) => (
                   <ComboboxOption
                     key={item}
                     value={item}

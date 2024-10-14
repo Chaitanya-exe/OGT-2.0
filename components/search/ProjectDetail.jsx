@@ -9,7 +9,7 @@ const ProjectDetail = ({ project,setDEtailModal }) => {
     <div className="z-10 flex items-end justify-center top-0 w-full h-full bg-black/20 left-0 fixed">
       <div className="w-[1400px] rounded-t-[30px] h-[75vh] overflow-y-scroll text-bgColor bg-white ">
         <IoCloseOutline onClick={()=> setDEtailModal(false)} className="text-bgColor cursor-pointer float-right size-7 m-3" />
-        <div className="flex justify-between gap-28 m-16">
+        <div className="flex justify-between gap-28 py-10  px-16">
           <div className="">
             <h2 className="text-[28px] capitalize">{project.role}</h2>
             <div className="space-x-4 mb-7 text-bgColor/80">

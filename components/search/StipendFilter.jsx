@@ -1,13 +1,16 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
 const StipendFilter = () => {
-  const [isOpen, setIsOpen] = useState(false); // State to toggle dropdown
+  const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
   const dropDownRef = useRef(null);
+  const router = useRouter();
+  
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
@@ -32,6 +35,25 @@ const StipendFilter = () => {
     { value: "50k+", label: "Above 50k" },
   ];
 
+  
+  const updateCategoryParam = () => {
+    const params = new URLSearchParams(window.location.search);
+    if (selectedOption) {
+      params.set("stipend", selectedOption);
+    } else {
+      params.delete("stipend");
+    }
+
+    const newPathname = `${window.location.pathname}?${params.toString()}`;
+
+    router.push(newPathname);
+  };
+
+  useEffect(() => {
+    updateCategoryParam();
+  }, [selectedOption]);
+
+
   return (
     <div className="relative" ref={dropDownRef}>
       <Image
@@ -41,8 +63,6 @@ const StipendFilter = () => {
         alt="logo"
         className="ml-4 absolute top-[14px] "
       />
-
-      {/* Input Field */}
       <input
         type="text"
         className="searchbar__input"

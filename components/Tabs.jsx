@@ -46,7 +46,7 @@ export default function Tabs({ direction }) {
 
 const Tab = ({ tab }) => {
   return (
-    <div className="tab w-fit px-5 relative shadow-md overflow-hidden hover:-hue-rotate-15 shadow-purple-500/10 border-l border-t border-x-purple-400/50 border-y-pink-400/30 group cursor-pointer">
+    <div className="tab text-nowrap w-fit px-7 relative shadow-md backdrop-blur overflow-hidden hover:-hue-rotate-15 shadow-purple-500/10 border-r border-t border-x-purple-400/50 border-y-pink-400/20 group cursor-pointer">
       {tab}
       <span className="absolute inset-0 bg-gradient-to-tr from-l1 via-pink-100/70 to-l1 ease-linear delay-75 duration-200 origin-top-left group-hover:scale-x-100 -z-10 transition-transform scale-x-0" />
     </div>

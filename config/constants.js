@@ -26,20 +26,26 @@ export const services = [
 ];
 
 export const tabs = [
-  "Home",
-  "About",
-  "Services",
-  "Contact",
-  "Gallery",
-  "Blog",
-  "Shop",
-  "Home",
-  "About",
-  "Services",
-  "Contact",
-  "Gallery",
-  "Blog",
-  "Shop",
+  "Software Development",
+  "Web Development",
+  "Design",
+  "Networking",
+  "Database",
+  "Systems Design",
+  "Data Science",
+  "Security Analyst",
+  "UX/UI Designer",
+  "Cloud",
+  "Blockchain",
+  "Cybersecurity",
+  "Machine Learning",
+  "AI",
+  "Frontend development",
+  "React",
+  "Node.js",
+  "React-Redux",
+  "App Development",
+  "Full-Stack",
 ];
 
 export const StepsData = [
@@ -233,13 +239,14 @@ export const projectsData = [
     companyNote:
       "Short company description To display an array of skills separated by commas, you can use the join() method in JavaScript, which concatenates array elements into a string with a specified separator.",
     role: "cyber security",
-    stipend: "100$",
+    stipend: "10000",
     timeline: "1 month",
     skills: ["WebScraping", "injections", "buffering", "NLP"],
     requirements: ["Landing page", "Home Page"],
     applicants: "100",
     status: "Active",
     postedOn: "20/4/24",
+    
   },
   {
     id: 2,
@@ -247,7 +254,7 @@ export const projectsData = [
     companyNote:
       "Short company description To display an array of skills separated by commas, you can use the join() method in JavaScript, which concatenates array elements into a string with a specified separator.",
     role: "cyber security",
-    stipend: "100$",
+    stipend: "15000",
     timeline: "1 month",
     skills: ["WebScraping", "injections", "buffering", "NLP"],
     applicants: "100",
@@ -262,7 +269,52 @@ export const projectsData = [
     companyNote:
       "Short company description To display an array of skills separated by commas, you can use the join() method in JavaScript, which concatenates array elements into a string with a specified separator.",
     role: "cyber security",
-    stipend: "100$",
+    stipend: "50000",
+    timeline: "1 month",
+    skills: ["WebScraping", "injections", "buffering", "NLP"],
+    requirements: ["Landing page", "Home Page"],
+
+    applicants: "100",
+    status: "Active",
+    postedOn: "20/4/24",
+  },
+  {
+    id: 4,
+    companyName: "Google",
+    companyNote:
+      "Short company description To display an array of skills separated by commas, you can use the join() method in JavaScript, which concatenates array elements into a string with a specified separator.",
+    role: "frontend development",
+    stipend: "45000",
+    timeline: "1 month",
+    skills: ["WebScraping", "injections", "buffering", "NLP"],
+    requirements: ["Landing page", "Home Page"],
+
+    applicants: "100",
+    status: "Active",
+    postedOn: "20/4/24",
+  },
+  {
+    id: 5,
+    companyName: "Google",
+    companyNote:
+      "Short company description To display an array of skills separated by commas, you can use the join() method in JavaScript, which concatenates array elements into a string with a specified separator.",
+    role: "web development",
+    stipend: "60000",
+    timeline: "1 month",
+    skills: ["WebScraping", "injections", "buffering", "NLP"],
+    requirements: ["Landing page", "Home Page"],
+
+    applicants: "100",
+    status: "Active",
+    postedOn: "20/4/24",
+  },
+  {
+    id: 6,
+    companyName: "Google",
+    companyNote:
+      "Short company description To display an array of skills separated by commas, you can use the join() method in JavaScript, which concatenates array elements into a string with a specified separator.",
+    role: "app development",
+    stipend: "20000",
     timeline: "1 month",
     skills: ["WebScraping", "injections", "buffering", "NLP"],
     requirements: ["Landing page", "Home Page"],

@@ -1,15 +1,13 @@
 "use client";
 
-import { projectsData } from "@/config/constants";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { MdBookmarkAdd } from "react-icons/md";
-import { MdBookmarkAdded } from "react-icons/md";
 import Button from "../ui/Button";
 import ProjectDetail from "./ProjectDetail";
+import { useSearchParams } from "next/navigation";
+import axios from "axios"
 
-const ProjectCard = ({ project, index,setDEtailModal }) => {
-
+const ProjectCard = ({ project, index, setDEtailModal }) => {
   return (
     <div
       key={index}
@@ -25,9 +23,7 @@ const ProjectCard = ({ project, index,setDEtailModal }) => {
         />
         <div className="flex-1 overflow-hidden text-ellipsis mr-28 ">
           <h2 className="text-[20px] font-medium  ">{project.companyName}</h2>
-          <h3 className="text-sm text-BO truncate">
-            {project.companyNote}
-          </h3>
+          <h3 className="text-sm text-BO truncate">{project.companyNote}</h3>
         </div>
         <div className="flex gap-4 items-center">
           {/* <MdBookmarkAdd className="size-5" /> */}
@@ -42,7 +38,7 @@ const ProjectCard = ({ project, index,setDEtailModal }) => {
       </div>
       <div className="border border-white/10 rounded p-1.5 flex justify-between items-center">
         <p className="capitalize font-medium">{project.role}</p>
-        <p>{project.stipend} Project</p>
+        <p>{project.stipend} $ Project</p>
         <p>TimeDeadline - {project.timeline}</p>
       </div>
       <div>
@@ -60,24 +56,44 @@ const ProjectCard = ({ project, index,setDEtailModal }) => {
 };
 
 const Projects = () => {
-        const [openDetailModal, setDEtailModal] = useState(false);
+  const [openDetailModal, setDEtailModal] = useState(false);
+  const [projects, setProjects] = useState([]);
+  const searchParams = useSearchParams();
+  const category = searchParams.get("category");
+  const stipend = searchParams.get("stipend");
 
-  const fetchProjects = () => {};
+
+  console.log(projects,category,stipend);
+
+  const fetchProjects = async () => {
+    try {
+      const {data} = await axios.get("/api/projects",{params : {category,stipend}});
+      setProjects(data);
+    } catch (error) {
+      console.error("Error fetching projects in ", error);
+    }
+  };
 
   useEffect(() => {
     fetchProjects();
-  }, []);
+  }, [category,stipend,searchParams]);
+
+  if(projects.length == 0){
+    return  <p className="text-center py-16 text-l2 text-3xl">No projects Found</p>
+  }
 
   return (
     <section className="flex flex-col gap-2 p-12">
-    
-      {projectsData.map((project, index) => (
+      {projects.map((project, index) => (
         <>
-
-         {
-        openDetailModal && <ProjectDetail project={project} setDEtailModal={setDEtailModal} />
-    }
-        <ProjectCard project={project} index={index} setDEtailModal={setDEtailModal}/>
+          {openDetailModal && (
+            <ProjectDetail project={project} setDEtailModal={setDEtailModal} />
+          )}
+          <ProjectCard
+            project={project}
+            index={index}
+            setDEtailModal={setDEtailModal}
+          />
         </>
       ))}
     </section>
