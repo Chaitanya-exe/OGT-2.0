@@ -18,8 +18,6 @@ const Testimonials = () => {
   const column2 = testimonialData.slice(visibleCount, visibleCount * 2);
   const column3 = testimonialData.slice(visibleCount * 2, visibleCount * 3);
 
-  console.log(testimonialData);
-
   return (
     <div className="relative my-9 min-h-[40vh]">
       <h1 className="h1Video mx-12">What our users are saying.</h1>
