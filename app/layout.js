@@ -2,13 +2,12 @@
 import "@/styles/globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Inter } from "next/font/google";
 import Provider from "@/components/Provider"
 
 // const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "ogt2.0",
+  title: "Get work done in your time",
   description: "Get&Post Projects.",
 };
 

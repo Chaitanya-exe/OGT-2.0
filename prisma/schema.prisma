@@ -10,14 +10,15 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
-model User {
+model Users {
   id          String   @id @default(uuid())
-  username    String
+  Username    String
   name        String
-  email       String
+  email       String   @unique()
   img         String
   role        Role     @default(NULL)
   skills      String[] @default([""])
@@ -43,7 +44,7 @@ model Project {
   id          String      @id @default(uuid())
   title       String
   description String
-  postedBy    User        @relation(fields: [postedById], references: [id])
+  postedBy    Users       @relation(fields: [postedById], references: [id])
   postedById  String
   requests    String[]    @default([""])
   deliverBy   DateTime    @default(now())
@@ -63,7 +64,7 @@ model Task {
 
 model Reviews {
   id          String @id @default(uuid())
-  postedBy    User   @relation(fields: [postedById], references: [id])
+  postedBy    Users  @relation(fields: [postedById], references: [id])
   postedById  String
   workerId    String
   rating      Float
