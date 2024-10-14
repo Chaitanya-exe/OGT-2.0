@@ -1,8 +1,8 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import {writeFileSync} from "fs"
+import path from "path";
 import { PrismaClient } from "@prisma/client";
-
-const userClient = new PrismaClient();
 
 const handler = NextAuth({
     // adapter: PrismaAdapter(userClient),
@@ -33,12 +33,29 @@ const handler = NextAuth({
 
         async signIn({ profile }) {
             try {
-
-                return true;
+                const userClient = new PrismaClient();
+                const isUser = userClient.users.findUnique({
+                    where: {
+                        email: profile.email
+                    }
+                });
+                if(!isUser){
+                    const dbRes = await userClient.users.create({
+                        data:{
+                            email: profile.email,
+                            img: `${profile.image}`,
+                            name: profile.name,
+                            Username: profile.email.split("@")[0],
+                        }
+                    })
+                    console.log(dbRes);
+                    return {status: 201}
+                }
+                return {status: 200};
             } catch (error) {
                 writeFileSync(path.join(__dirname, "errors.log"), `${error}\n\n`);
                 console.log("There is an error");
-                return false
+                return {status: 501}
             }
         }
     }
