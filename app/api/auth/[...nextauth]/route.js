@@ -55,7 +55,6 @@ const handler = NextAuth({
                         email: profile.email
                     }
                 });
-                console.log(isUser);
                 if (!isUser) {
                     const dbRes = await userClient.users.create({
                         data: {
@@ -64,8 +63,7 @@ const handler = NextAuth({
                             name: profile.name,
                             Username: profile.email.split("@")[0],
                         }
-                    })
-                    console.log(dbRes);
+                    });
                     return { status: 201 }
                 }
                 return { status: 200 };
