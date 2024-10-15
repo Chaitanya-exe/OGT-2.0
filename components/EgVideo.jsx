@@ -57,11 +57,11 @@ useEffect(()=>{
         alt="illustration"
         className="absolute right-0 -top-36"
       />
-      <div className="w-full mt-4 flex gap-28 items-start justify-between">
+      <div className="w-full mt-4 flex gap-16 items-start justify-between ">
         <h1 className="h1Video text-bgColor">
           Fostering Growth and Building Dreams & Easily get Projects
         </h1>
-        <h2 className="h2Video">
+        <h2 className="h2Video max-w-2xl ">
           O G T transcends simple project matchmaking. We aim to cultivate a
           thriving ecosystem for professional growth. By providing access to
           diverse opportunities and fostering meaningful connections, we empower

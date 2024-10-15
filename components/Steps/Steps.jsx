@@ -8,7 +8,7 @@ import { fadeAnimation } from "@/config/motion";
 
 const Steps = ({ data }) => {
   const [currentStep, setCurrentStep] = useState(0);
-  console.log(currentStep);
+  // console.log(currentStep);
 
   return (
     <div className="flex my-4 *:px-16 *:py-24 rounded-[30px] overflow-hidden">

@@ -9,6 +9,8 @@ import Image from "next/image";
 
 const Header = () => {
   const {data : session} = useSession();
+  console.log(session);
+  
 
 
   return (

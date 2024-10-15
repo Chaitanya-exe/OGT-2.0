@@ -16,13 +16,11 @@ import Image from "next/image";
 import { tabs } from "@/config/constants";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-const Searchcategory = () => {
+const Searchcategory = ({className}) => {
   const [category, setcategory] = useState();
   const [query, setQuery] = useState("");
   const router = useRouter();
-  const searchParams= useSearchParams();
-  const pathname = usePathname();
-
+  
 
 
   const updateCategoryParam = () => {
@@ -74,7 +72,7 @@ const Searchcategory = () => {
 
           <ComboboxInput
             placeholder="Search here"
-            className=" searchbar__input  "
+            className={className}
             displayValue={() => category}
             onChange={(e) => setQuery(e.target.value)}
           />
@@ -89,7 +87,7 @@ const Searchcategory = () => {
             afterLeave={() => setQuery("")}
           >
             <ComboboxOptions
-              className="absolute z-10 mt-1 max-h-60 min-w-[500px] overflow-auto rounded-md bg-white/10 backdrop-blur-2xl py-2 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+              className="absolute z-10 mt-1 max-h-60 min-w-[300px] max-w-[500px] overflow-auto rounded-md bg-white/10 backdrop-blur-2xl py-2 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
               static
             >
               {

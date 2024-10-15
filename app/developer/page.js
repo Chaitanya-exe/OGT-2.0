@@ -8,7 +8,7 @@ const DeveloperPage = () => {
     <>
 
     <div className='flex gap-10 mt-20 justify-center'>
-      <Searchcategory />
+      <Searchcategory className={"searchbar__input"} />
       <StipendFilter/>
     </div>
       <Projects />
