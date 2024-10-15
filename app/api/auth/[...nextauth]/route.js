@@ -1,8 +1,8 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import { writeFileSync } from "fs"
+import path from "path";
 import { PrismaClient } from "@prisma/client";
-
-const userClient = new PrismaClient();
 
 const handler = NextAuth({
     // adapter: PrismaAdapter(userClient),
@@ -15,50 +15,62 @@ const handler = NextAuth({
     ],
     callbacks: {
         async session({ session }) {
+            const userClient = new PrismaClient();
             try {
                 const sessionUser = await userClient.users.findUnique({
                     where: {
                         email: session.user.email,
-                    }
+                    },
                 });
-                session.user.id = sessionUser.id;
-                userClient.$disconnect();
-                return session
+                console.log(sessionUser);
+                if (!sessionUser) {
+                    const newUser = await userClient.users.create({
+                        data:{
+                            name: session.user.name,
+                            email: session.user.email,
+                            img: `${session.user.image}`,
+                            Username: session.user.email.split('@')[0]
+                        }
+                    });
+                    session.user.id = newUser.id;
+                } else{
+                    session.user.id = sessionUser.id;
+                }
+
+                return session;
             } catch (error) {
-                writeFileSync(path.join(__dirname, "errors.log"), `${error}\n\n`);
-                console.log("There is an error");
-                return
+                writeFileSync(path.join(__dirname, "errors.log"), `${error}\n\n`, { flag: 'a' }); // Append to file
+                console.log(error);
+                return null;
+            } finally {
+                await userClient.$disconnect();
             }
         },
 
         async signIn({ profile }) {
             try {
-
-                const isUser = await userClient.users.findUnique({
+                const userClient = new PrismaClient();
+                const isUser = userClient.users.findUnique({
                     where: {
                         email: profile.email
                     }
                 });
-                console.log(isUser);
                 if (!isUser) {
-                    const username = profile.email.split("@")[0];
-                    const response = await userClient.users.create({
+                    const dbRes = await userClient.users.create({
                         data: {
                             email: profile.email,
+                            img: `${profile.image}`,
                             name: profile.name,
-                            Username: username,
-                            img: `${profile.picture}`,
-
+                            Username: profile.email.split("@")[0],
                         }
-                    })
-                    console.log(response);
+                    });
+                    return { status: 201 }
                 }
-                userClient.$disconnect();
-                return true;
+                return { status: 200 };
             } catch (error) {
                 writeFileSync(path.join(__dirname, "errors.log"), `${error}\n\n`);
-                console.log("There is an error");
-                return false
+                console.log(error);
+                return { status: 501 }
             }
         }
     }

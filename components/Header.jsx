@@ -44,7 +44,7 @@ const Header = () => {
               <IoIosArrowDown className="inline-flex mx-2" />
             </a>
             {session?.user ? (
-              <Image src={session.user.image} width={27} height={27} alt={session.user.name.charAt(0).toUpperCase()} className="" />
+              <Image src={`${session.user.image}`} width={27} height={27} alt={session.user.name.charAt(0).toUpperCase()} className="" />
             ) : (
 
             <div className="flex gap-2 items-center">
