@@ -1,4 +1,7 @@
 import { projectsData } from "@/config/constants";
+import { PrismaClient } from "@prisma/client";
+import { createError } from "@/utils";
+const userClient = new PrismaClient();
 
 export const GET = async (req) => {
   try {
@@ -14,16 +17,7 @@ export const GET = async (req) => {
       query.category = category.toLowerCase();
     }
 
-    console.log(
-      "Query:",
-      query,
-      "Category:",
-      category,
-      "Stipend :",
-      stipendRange
-    );
-
-    let filteredProjects = projectsData;
+    let filteredProjects = await userClient.project.findMany();
     if (category) {
       filteredProjects = filteredProjects.filter(
         (project) => project.role.toLowerCase() === category.toLowerCase()
@@ -59,6 +53,7 @@ export const GET = async (req) => {
     });
   } catch (error) {
     console.error("Error fetching products:", error);
+    createError(error);
     return new Response("Failed to fetch projects", {
       status: 500,
     });

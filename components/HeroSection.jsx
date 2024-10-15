@@ -14,7 +14,7 @@ const HeroSection = () => {
         <span className="heroOgt text-white">ogt</span>
         <span className="heroTxt">
           {" "}
-          : The Global marketplace for Top Talent.
+          : The Global marketplace for Remote Services.
         </span>
       </motion.h2>
       <motion.h4

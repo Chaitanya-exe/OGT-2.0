@@ -3,7 +3,7 @@
 import React from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import Button from "./ui/Button";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, useSession, signOut } from "next-auth/react";
 import Image from "next/image";
 
 
@@ -32,7 +32,7 @@ const Header = () => {
               <IoIosArrowDown className="inline-flex mx-2" />
             </a>
           </div>
-          <p className="text-center ogt-logo  flex-1 ">
+          <p className="text-center ogt-logo  flex ">
             <a>ogt</a>
           </p>
           <div className="flex gap-10  items-center">
@@ -46,14 +46,19 @@ const Header = () => {
               <IoIosArrowDown className="inline-flex mx-2" />
             </a>
             {session?.user ? (
-              <Image src={`${session.user.image}`} width={27} height={27} alt={session.user.name.charAt(0).toUpperCase()} className="" />
+              <div className="flex gap-3 items-center">
+                <Image src={`${session.user.image}`} width={30} height={30} alt={session.user.name.charAt(0).toUpperCase()} className="rounded-lg" />
+                <button onClick={() => signOut()}>
+                  <Button type="primary" text="Log out" className="w-[106px]" />
+                </button>
+              </div>
             ) : (
 
             <div className="flex gap-2 items-center">
               <button onClick={() => signIn()}>
-                <Button type="primary" text="Login" className=" w-[106px]" />
+                <Button type="primary" text="SignIn/SignUp" className=" w-[150px]" />
               </button>
-              <Button type="secondary" text="Signup" className="w-[106px]" />
+              
             </div>
             )}
 
