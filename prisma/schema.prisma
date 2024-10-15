@@ -48,7 +48,7 @@ model Project {
   postedById  String
   requests    String[]    @default([""])
   deliverBy   DateTime    @default(now())
-  category    String
+  category    String[]    @default([""])
   isCompleted IsCompleted @default(FALSE)
 
   tasks Task[]
