@@ -39,3 +39,4 @@ script
 .gitignore
 prisma/
 errors.log
+data.json
