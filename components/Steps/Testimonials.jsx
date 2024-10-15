@@ -10,7 +10,7 @@ import { fadeAnimation } from "@/config/motion";
 
 
 const Testimonials = () => {
-  const [visibleCount, setVisibleCount] = useState(2);
+  const [visibleCount, setVisibleCount] = useState(3);
   const handleShowMore = () => {
     setVisibleCount((prev) => prev + 1);
   };
