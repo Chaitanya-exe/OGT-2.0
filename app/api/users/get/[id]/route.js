@@ -14,7 +14,7 @@ async function handler(req){
         if(dbRes){
             return Response.json({dbRes},{status:200});
         } else{
-            throw new Error("user does not exist");
+            return Response.json({msg:"user not in database"},{status:404});
         }
     } catch (error) {
         console.log(error.message);
