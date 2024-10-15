@@ -1,9 +1,9 @@
 import { PrismaClient } from "@prisma/client";
-import { fetchId } from "@/utils";
+import { fetchId, createError } from "@/utils";
 
 const userClient = new PrismaClient();
 
-async function handler(req, res){
+async function handler(req){
     try {
         
         const id = fetchId(req.url);
@@ -23,12 +23,13 @@ async function handler(req, res){
             }
         });
         console.log(dbRes);
-        return Response.json({msg:"data Received"});
+        return Response.json({response: dbRes},{status:202});
     } catch (error) {
-        console.log(error);
+        console.log(error.message);
+        createError(error);
         return new Response(JSON.stringify(error));
     } finally{
-        userClient.$disconnect();
+        await userClient.$disconnect();
     }
 }
 
