@@ -3,6 +3,7 @@ import GoogleProvider from "next-auth/providers/google";
 import { writeFileSync } from "fs"
 import path from "path";
 import { PrismaClient } from "@prisma/client";
+import { createError } from "@/utils";
 
 const handler = NextAuth({
     // adapter: PrismaAdapter(userClient),
@@ -22,7 +23,6 @@ const handler = NextAuth({
                         email: session.user.email,
                     },
                 });
-                console.log(sessionUser);
                 if (!sessionUser) {
                     const newUser = await userClient.users.create({
                         data:{
@@ -41,6 +41,7 @@ const handler = NextAuth({
             } catch (error) {
                 writeFileSync(path.join(__dirname, "errors.log"), `${error}\n\n`, { flag: 'a' }); // Append to file
                 console.log(error);
+                createError(error);
                 return null;
             } finally {
                 await userClient.$disconnect();
@@ -70,6 +71,7 @@ const handler = NextAuth({
             } catch (error) {
                 writeFileSync(path.join(__dirname, "errors.log"), `${error}\n\n`);
                 console.log(error);
+                createError(error);
                 return { status: 501 }
             }
         }
