@@ -33,26 +33,6 @@ const handler = NextAuth({
         async signIn({ profile }) {
             try {
 
-                const isUser = await userClient.users.findUnique({
-                    where: {
-                        email: profile.email
-                    }
-                });
-                console.log(isUser);
-                if (!isUser) {
-                    const username = profile.email.split("@")[0];
-                    const response = await userClient.users.create({
-                        data: {
-                            email: profile.email,
-                            name: profile.name,
-                            Username: username,
-                            img: `${profile.picture}`,
-
-                        }
-                    })
-                    console.log(response);
-                }
-                userClient.$disconnect();
                 return true;
             } catch (error) {
                 writeFileSync(path.join(__dirname, "errors.log"), `${error}\n\n`);
