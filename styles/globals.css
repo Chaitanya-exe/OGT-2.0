@@ -154,7 +154,6 @@ line-height: 60px;
 width: 752px;
 height: 160px;
 
-font-family: 'Poppins';
 font-style: normal;
 font-weight: 400;
 font-size: 22px;
@@ -162,21 +161,18 @@ line-height: 28px;
 color: #1A1A2E;
   }
   .h3Video{
-font-family: 'Poppins';
+/* font-family: 'Poppins'; */
 font-style: normal;
 font-weight: 550;
 font-size: 26px;
 line-height: 44px;
-color: #1A1A2E;
   }
   .pVideo{
-    /* We envision a world where skilled individuals can seamlessly connect with exciting projects across the globe. Our platform fosters a vibrant marketplace of talent, empowering Developers to showcase their expertise and collaborate with businesses seeking the perfect fit */
-font-family: 'Poppins';
+/* font-family: 'Poppins'; */
 font-style: normal;
 font-weight: 400;
 font-size: 16px;
 line-height: 26px;
-color: #1A1A2E;
   }
   .videoRect{
 width: 650px;

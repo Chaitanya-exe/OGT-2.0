@@ -76,7 +76,7 @@ useEffect(()=>{
           {services.map((service) => (
             <motion.div
               key={service.id}
-              className="item"
+              className="item text-bgColor"
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}

@@ -225,10 +225,41 @@ export const footerDummyData = [
   {
     name: "Help & support",
     list: ["about", "Why ogt?", "email", "faqs", "terms & services"],
+    list: [
+      {
+        name: "about",
+        link: "/about",
+      },
+      {
+        name: "Why OGT ?",
+        link: "/why",
+      },
+      {
+        name: "email",
+        link: "/",
+      },
+      {
+        name: "faqs",
+        link: "/faqs",
+      },
+      {
+        name: "Terms & Services",
+        link: "/terms&services",
+      },
+    ],
   },
   {
     name: "resources",
-    list: ["Free courses", "blogs"],
+    list: [
+      {
+        name: "Free Courses",
+        link: "/resources",
+      },
+      {
+        name: "Blogs",
+        link: "/blogs",
+      },
+    ],
   },
 ];
 

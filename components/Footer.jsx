@@ -3,6 +3,7 @@ import React from "react";
 import { footerDummyData } from "@/config/constants";
 import { RxDiscordLogo } from "react-icons/rx";
 import { IoLogoInstagram } from "react-icons/io5";
+import Link from "next/link";
 
 
 
@@ -21,9 +22,12 @@ const Footer = () => {
           <h3 className="text-[18px]">{item.name}</h3>
           <ul className="list-disc list-inside text-BO">
             {item.list.map((listItem, i) => (
+              <Link href={listItem.link}>
+
               <li key={i} className="hover:text-white cursor-pointer">
-                {listItem}
+                {listItem.name}
               </li>
+              </Link>
             ))}
           </ul>
         </div>
