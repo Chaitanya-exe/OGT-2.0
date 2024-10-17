@@ -1,11 +1,11 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { writeFileSync } from "fs"
-import path from "path";
 import { PrismaClient } from "@prisma/client";
 import { createError } from "@/utils";
 
-const handler = NextAuth({
+const userClient = new PrismaClient(); 
+
+export const authOptions = {
     providers: [
         GoogleProvider({
             clientId: process.env.CLIENT_ID,
@@ -13,32 +13,20 @@ const handler = NextAuth({
 
         })
     ],
+    session:{
+        strategy:"jwt",
+    },
     callbacks: {
-        async session({ session }) {
-            const userClient = new PrismaClient();
+        async session({ session, token }) {
             try {
-                const sessionUser = await userClient.users.findUnique({
-                    where: {
-                        email: session.user.email,
-                    },
-                });
-                if (!sessionUser) {
-                    const newUser = await userClient.users.create({
-                        data:{
-                            name: session.user.name,
-                            email: session.user.email,
-                            img: `${session.user.image}`,
-                            Username: session.user.email.split('@')[0]
-                        }
-                    });
-                    session.user.id = newUser.id;
-                } else{
-                    session.user.id = sessionUser.id;
+                if(token && token.id){
+                    session.user.id = token.id;
+                    session.user.email = token.email;
+                    session.user.role = token.role;
+                    session.user.username = token.username;
                 }
-
                 return session;
             } catch (error) {
-                writeFileSync(path.join(__dirname, "errors.log"), `${error}\n\n`, { flag: 'a' }); // Append to file
                 console.log(error);
                 createError(error);
                 return null;
@@ -49,32 +37,51 @@ const handler = NextAuth({
 
         async signIn({ profile }) {
             try {
-                const userClient = new PrismaClient();
-                const isUser = userClient.users.findUnique({
-                    where: {
+                const img = profile.picture
+                const user = await userClient.users.findUnique({
+                    where:{
                         email: profile.email
                     }
-                });
-                if (!isUser) {
-                    const dbRes = await userClient.users.create({
-                        data: {
-                            email: profile.email,
-                            img: `${profile.image}`,
+                })
+                if(!user){
+                    await userClient.users.create({
+                        data:{
                             name: profile.name,
+                            email: profile.email,
                             Username: profile.email.split("@")[0],
+                            img: `${profile.picture}`
                         }
                     });
-                    return { status: 201 }
                 }
-                return { status: 200 };
+                return true;
             } catch (error) {
-                writeFileSync(path.join(__dirname, "errors.log"), `${error}\n\n`);
                 console.log(error);
                 createError(error);
                 return { status: 501 }
             }
+        },
+
+        async jwt({token, user}){
+            if (user){
+                const dbRes = await userClient.users.findUnique({
+                    where:{
+                        email: user.email
+                    }
+                });
+                
+                if(dbRes){
+                    token.id = dbRes.id;
+                    token.email = dbRes.email;
+                    token.username = dbRes.Username;
+                    token.role = dbRes.role;
+                }
+            }
+            return token
         }
-    }
-})
+    },
+    secret: process.env.NEXTAUTH_SECRET
+};
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
