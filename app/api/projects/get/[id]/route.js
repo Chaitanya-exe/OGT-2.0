@@ -22,6 +22,8 @@ async function handler(req){
         console.log(error);
         createError(error);
         return Response.json({error},{status:501});
+    } finally{
+        await userClient.$disconnect();
     }
 }
 

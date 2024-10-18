@@ -38,7 +38,7 @@ model Applications {
   project     Project  @relation(fields: [projectId], references: [id])
   applicantId String
   applicant   Users    @relation(fields: [applicantId], references: [id])
-  answers     String[]
+  answers     String[] @default([""])
 }
 
 model Project {
