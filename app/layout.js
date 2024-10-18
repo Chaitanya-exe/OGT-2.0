@@ -1,8 +1,9 @@
-// import { Inter } from "next/font/google";
+
 import "@/styles/globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Provider from "@/components/Provider"
+import Provider from "@/components/Provider";
+import ClientLayout from "./ClientLayout";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -12,15 +13,16 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  
   return (
     <html lang="en">
-      <body className="bg-bgColor text-blac relative">
-        <Provider>
-          <Header />
+      <Provider>
+        <body className="bg-bgColor min-h-screen flex flex-col relative">
+         <ClientLayout >
           {children}
-          <Footer />
-        </Provider>
-      </body>
+         </ClientLayout>
+        </body>
+      </Provider>
     </html>
   );
 }

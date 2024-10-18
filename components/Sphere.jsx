@@ -6,8 +6,7 @@ import Trusted from "./Trusted";
 import { fadeAnimation } from "@/config/motion";
 
 const Sphere = () => {
-  // const ref = useRef(null);
-  // const isInView = useInView(ref, { once: true });
+
 
   return (
     <section className="mx-8 bg-fixed relative text-center items-center flex gap-5 flex-col min-h-[70vh] ">

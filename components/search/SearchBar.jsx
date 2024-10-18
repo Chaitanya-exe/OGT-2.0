@@ -17,9 +17,12 @@ import { tabs } from "@/config/constants";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const Searchcategory = ({className}) => {
-  const [category, setcategory] = useState();
+  const searchParams = useSearchParams()
+  const urlCategory = searchParams.get('category');
+  const [category, setcategory] = useState(urlCategory);
   const [query, setQuery] = useState("");
   const router = useRouter();
+
   
 
 

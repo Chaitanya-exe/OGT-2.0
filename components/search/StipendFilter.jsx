@@ -1,13 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
 const StipendFilter = () => {
+  const searchParams = useSearchParams();
+  const urlStipend = searchParams.get('stipend')
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState(urlStipend);
   const dropDownRef = useRef(null);
   const router = useRouter();
   

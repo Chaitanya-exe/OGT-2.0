@@ -32,7 +32,6 @@ useEffect(()=>{
       scrollTrigger: {
         trigger: leftContent,
         start: "top top",
-        // end : 'bottom+=100% bottom',
         end: () => `bottom ${window.innerHeight / 2}px`, // Stop when the last div comes to center
 
         scrub: true,

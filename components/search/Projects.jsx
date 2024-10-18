@@ -6,8 +6,23 @@ import Button from "../ui/Button";
 import ProjectDetail from "./ProjectDetail";
 import { useSearchParams } from "next/navigation";
 import axios from "axios"
+import { Alert, Snackbar } from "@mui/material";
 
 const ProjectCard = ({ project, index, setDEtailModal }) => {
+   const [open, setOpen] = React.useState(false);
+
+   const handleClick = () => {
+     setOpen(true);
+   };
+
+   const handleClose = (event, reason) => {
+     if (reason === "clickaway") {
+       return;
+     }
+
+     setOpen(false);
+   };
+
   return (
     <div
       key={index}
@@ -48,9 +63,20 @@ const ProjectCard = ({ project, index, setDEtailModal }) => {
         <li>{project.status}</li>
       </ul>
       <span className="text-sm text-BO">{project.applicants}+ applicants</span>
-      <button>
+
+      <button onClick={handleClick}>
         <Button text="Apply" type="primary" className="w-[140px] float-right" />
       </button>
+        {/* <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert
+            onClose={handleClose}
+            severity="success"
+            variant="filled"
+            sx={{ width: "100%" }}
+          >
+            This is a success Alert inside a Snackbar!
+          </Alert>
+        </Snackbar> */}
     </div>
   );
 };

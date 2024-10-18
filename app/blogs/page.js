@@ -25,7 +25,7 @@ const page = () => {
     router.push("?");
   };
   return (
-    <section className="mx-20 my-10">
+    <section className="mx-28 my-10">
       <div className="py-8">
         <h2 className="h1Video text-5xl text-Nwhite">OGT- </h2>
         <span className=" text-lg font-light text-BO ">
@@ -35,9 +35,9 @@ const page = () => {
 
       <div className="flex justify-between gap-36 items-end">
         <div className="flex gap-2 cursor-pointer border-white/10 *:p-2 capitalize flex-1 border-b *:text-sm font-medium ">
-          <span onClick={handleViewAllClick} className={`${!currentCategory ? 'font-bold border-b' : ''}`}>View All</span>
+          <span onClick={handleViewAllClick} className={`${!currentCategory ? 'font-bold border-b' : 'text-white/70'}`}>View All</span>
           {tabs.slice(0, 5).map((tab, i) => (
-            <span onClick={() => handleTabClick(tab)} className={`${currentCategory === tab ? 'font-bold border-b' : ''}`}>{tab}</span>
+            <span onClick={() => handleTabClick(tab)} className={`${currentCategory === tab ? 'font-bold border-b' : 'text-white/70'}`}>{tab}</span>
           ))}
         </div>
         <Searchcategory
@@ -46,7 +46,7 @@ const page = () => {
           }
         />
       </div>
-      <div className="flex my-12 justify-between flex-wrap gap-14">
+      <div className="flex my-12 justify-center flex-wrap gap-10">
         {Array.from({ length: 6 }).map((_, index) => (
           <BlogCard key={index} />
         ))}

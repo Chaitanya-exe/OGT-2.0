@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { PaginationItem } from '@mui/material';
@@ -11,19 +10,12 @@ const PaginationUI = () => {
   };
 
   return (
-    <Stack spacing={2}>
+    <Stack spacing={2} className='flex items-center'>
       <p>Page: {page}</p>
       <Pagination count={10} page={page} onChange={handleChange}
-    //    color='secondary' 
        renderItem={(item) =>( <PaginationItem
             {...item}
-            sx={{
-              color: item.selected ? 'white' : 'blue', // Custom text color
-              backgroundColor: item.selected ? 'green' : 'transparent', // Custom background color for selected
-              '&:hover': {
-                backgroundColor: 'lightgray', // Custom hover color
-              },
-            }}
+          className={`${item.selected ? 'bg-red-400 text-white hover:text-white' : 'text-white/50'} hover:bg-gray-200 hover:text-bgColor rounded-full`}
           />
         )} />
     </Stack>
