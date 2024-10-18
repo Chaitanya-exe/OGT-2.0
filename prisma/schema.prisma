@@ -9,8 +9,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("POSTGRES_PRISMA_URL")
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
@@ -27,32 +27,34 @@ model Users {
   country     String   @default("")
   phNumber    String   @default("")
 
-  projects Project[]
-  reviews  Reviews[]
-  // sessions Session[]
+  projects    Project[]
+  reviews     Reviews[]
+  applicaions Applications[]
 }
 
-// model Session {
-//   id           String   @id @default(cuid())
-//   sessionToken String   @unique
-//   userId       String
-//   expires      DateTime
-//   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-// }
+model Applications {
+  id          String   @id @default(uuid())
+  projectId   String
+  project     Project  @relation(fields: [projectId], references: [id])
+  applicantId String
+  applicant   Users    @relation(fields: [applicantId], references: [id])
+  answers     String[]
+}
 
 model Project {
-  id          String      @id @default(uuid())
-  title       String
-  description String      
-  stipend     Float       @default(0)
-  postedBy    Users       @relation(fields: [postedById], references: [id])
-  postedById  String
-  requests    String[]    @default([""])
-  deliverBy   DateTime    @default(now())
-  category    String[]    @default([""])
-  isCompleted IsCompleted @default(FALSE)
-
-  tasks Task[]
+  id           String         @id @default(uuid())
+  title        String
+  description  String
+  stipend      Float          @default(0)
+  postedBy     Users          @relation(fields: [postedById], references: [id])
+  postedById   String
+  requests     String[]       @default([""])
+  deliverBy    DateTime       @default(now())
+  category     String[]       @default([""])
+  questions    String[]       @default(["Describe your skills and approach towards the project."])
+  isCompleted  IsCompleted    @default(FALSE)
+  applications Applications[]
+  tasks        Task[]
 }
 
 model Task {
