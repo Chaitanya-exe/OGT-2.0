@@ -1,6 +1,7 @@
 "use client";
 
 import { tabs } from "@/config/constants";
+import axios from "axios";
 import {
   Autocomplete,
   Chip,
@@ -9,6 +10,12 @@ import {
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
+
+async function registerUser(form){
+  const res = await axios.post("https://localhost:3000/api/users/update", form);
+  const response = await res.json();
+  return response;
+}
 
 const page = () => {
   const [stepCount, setStepCount] = useState(0);
@@ -86,13 +93,13 @@ const page = () => {
                   id="developer"
                   type="radio"
                   name="role"
-                  value="Developer"
-                  checked={formData.role === "Developer"}
+                  value="WORKER"
+                  checked={formData.role === "WORKER"}
                   onChange={handleChange}
                   className=" checked:text-white text-BO"
                 />{" "}
                 <label htmlFor="developer" className="text-lg mx-2">
-                  Developer
+                  provider
                 </label>
               </div>
               <div>
@@ -100,14 +107,14 @@ const page = () => {
                   id="employer"
                   type="radio"
                   name="role"
-                  value="Employer"
-                  checked={formData.role === "Employer"}
+                  value="CLIENT"
+                  checked={formData.role === "CLIENT"}
                   onChange={handleChange}
                   className=" checked:text-white text-BO"
                 />{" "}
                 <label htmlFor="employer" className="text-lg mx-2">
                   {" "}
-                  Employer
+                  Client
                 </label>
               </div>
             </div>
@@ -268,16 +275,14 @@ const page = () => {
   console.log(stepCount, completedSteps);
 
  if (stepCount === 6) {
-   localStorage.setItem("registrationInfo", JSON.stringify(formData));
+   const response = registerUser(formData);
 
-   const registrationInfo = JSON.parse(
-     localStorage.getItem("registrationInfo")
-   );
-   if (registrationInfo.role === "Employer") {
+   
+   if (response.role === "CLIENT") {
      router.push("/employer");
    }
 
-   if (registrationInfo.role === "Developer") {
+   if (response.role === "WORKER") {
      router.push("/developer");
    }
  }

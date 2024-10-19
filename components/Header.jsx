@@ -6,10 +6,8 @@ import Button from "./ui/Button";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 
-import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
@@ -17,15 +15,9 @@ import { IoMdLogOut } from "react-icons/io";
 
 import { FaUser } from "react-icons/fa6";
 import Link from "next/link";
+
 const Header = () => {
   const { data: session } = useSession();
-  console.log(session);
-  const registrationInfo = JSON.parse(
-     localStorage.getItem("registrationInfo")
-   );
-
- 
-
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -94,27 +86,27 @@ const Header = () => {
                   transformOrigin={{ horizontal: "right", vertical: "top" }}
                   anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
                 >
-                <Link href={registrationInfo.role === "Developer" ? "/developer" : "/employer" }>
-                  <MenuItem
-                    onClick={handleClose}
-                    className="flex hover:bg-bgColor/15 gap-2 items-center py-3 "
-                  >
-                    <span className="secondary_grad p-1">
-                      <Image
-                        src={session.user?.image}
-                        width={32}
-                        height={32}
-                        alt={session.user.name.charAt(0).toUpperCase()}
-                        className="rounded-full "
-                      />
-                    </span>
-                    <div>
-                      <p>{session.user.name}</p>
-                      <p className="text-sm  text-BO">Role</p>
-                    </div>
-                  </MenuItem>
+                  <Link href={session?.user.role === "WORKER" ? "/developer" : "/employer"}>
+                    <MenuItem
+                      onClick={handleClose}
+                      className="flex hover:bg-bgColor/15 gap-2 items-center py-3 "
+                    >
+                      <span className="secondary_grad p-1">
+                        <Image
+                          src={session.user?.image}
+                          width={32}
+                          height={32}
+                          alt={session.user.name.charAt(0).toUpperCase()}
+                          className="rounded-full "
+                        />
+                      </span>
+                      <div>
+                        <p>{session.user.name}</p>
+                        <p className="text-sm  text-BO">Role</p>
+                      </div>
+                    </MenuItem>
 
-                </Link>
+                  </Link>
                   <Link href={"/developer/profile"}>
                     <MenuItem
                       onClick={handleClose}
