@@ -187,18 +187,18 @@ const page = () => {
           <>
             <label className="capitalize text-[60px]  font-semibold">
               {" "}
-              Age :
+              Enter Date of Birth :
             </label>
             <input
               required
               onChange={handleChange}
-              min="18"
-              max="90"
-              id="age"
-              type="number"
+              // min="18"
+              // max="90"
+              id="dob"
+              type="date"
               name="dob"
               value={formData.dob}
-              placeholder="age"
+              placeholder="05/9/2003"
               className="border p-4 w-[300px] bg-transparent rounded-md block focus:outline outline-purple-400"
             />
           </>
