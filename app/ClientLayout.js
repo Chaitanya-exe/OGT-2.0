@@ -14,13 +14,13 @@ const ClientLayout = ({ children }) => {
   useEffect(() => {
     const hasRedirectedBefore =
       localStorage.getItem("hasRedirectedBefore") === "true";
-    const registrationInfo = localStorage.getItem("registrationInfo"); // Check for existing registration information
+    // const registrationInfo = localStorage.getItem("registrationInfo"); // Check for existing registration information
 
-    if (hasRedirectedBefore && pathname === "/registration") {
+    if ( hasRedirectedBefore && pathname === "/registration") {
       router.push("/");
     }
 
-    if (session?.user && !hasRedirectedBefore && !registrationInfo) {
+    if (session?.user && !hasRedirectedBefore ) {
       router.push("/registration");
       localStorage.setItem("hasRedirectedBefore", "true");
     }

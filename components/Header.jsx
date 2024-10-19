@@ -5,11 +5,8 @@ import { IoIosArrowDown } from "react-icons/io";
 import Button from "./ui/Button";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
-
-import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
@@ -20,10 +17,6 @@ import Link from "next/link";
 const Header = () => {
   const { data: session } = useSession();
   console.log(session);
-  const registrationInfo = JSON.parse(
-     localStorage.getItem("registrationInfo")
-   );
-
  
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -94,7 +87,7 @@ const Header = () => {
                   transformOrigin={{ horizontal: "right", vertical: "top" }}
                   anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
                 >
-                <Link href={registrationInfo.role === "Developer" ? "/developer" : "/employer" }>
+                <Link href={session?.user.role === "Developer" ? "/developer" : "/employer" }>
                   <MenuItem
                     onClick={handleClose}
                     className="flex hover:bg-bgColor/15 gap-2 items-center py-3 "

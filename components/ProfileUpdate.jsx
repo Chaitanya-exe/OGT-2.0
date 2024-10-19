@@ -1,10 +1,20 @@
+"use client";
+
 import { Autocomplete } from '@mui/material';
+import { useSession } from 'next-auth/react';
 import React, { useState } from 'react'
 
 const ProfileUpdate = () => {
-const registrationInfo = JSON.parse(localStorage.getItem('registrationInfo'));
+const {data : session} = useSession()
 
-const [updatedData,setUpdatedData] = useState(registrationInfo)
+const [updatedData, setUpdatedData] = useState({
+  role: session?.user.role,
+  phNumber: session?.user.phNumber,
+  country:session?.user.country,
+  description: session?.user.description,
+  dob: session?.user.dob,
+  skills: session?.user.skills,
+});
     
 console.log(updatedData);
 
@@ -51,7 +61,7 @@ console.log(updatedData);
             className="bg-transparent border border-white/10 text-white rounded-md p-3 focus:outline-purple-300 focus:outline"
           />
         </label>
-        <label>
+        {/* <label>
           <Autocomplete
             multiple
             id="tags-standard"
@@ -102,7 +112,7 @@ console.log(updatedData);
               className: "bg-l2 m-2 text-capitalize text-white",
             }}
           />
-        </label>
+        </label> */}
       </div>
     </div>
   );
