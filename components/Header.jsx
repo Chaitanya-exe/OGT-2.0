@@ -23,7 +23,8 @@ const Header = () => {
   const registrationInfo = JSON.parse(
      localStorage.getItem("registrationInfo")
    );
-  
+
+ 
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -53,7 +54,7 @@ const Header = () => {
               <IoIosArrowDown className="inline-flex mx-2" />
             </a>
           </div>
-          <p className="text-center ogt-logo  flex-1 ">
+          <p className="text-center ogt-logo  flex ">
             <a>ogt</a>
           </p>
           <div className="flex gap-10  items-center">

@@ -6,8 +6,8 @@ export function fetchId(query){
     return params.pop();
 }
 
-export function createError(error){
+export function createError(error, fileName = __filename){
     const writeStream = fs.createWriteStream("./errors.txt",{encoding:"utf-8"});
-    writeStream.write(`${error.toString()}\n\n`);
+    writeStream.write(`${error.toString()}-------${fileName}\n\n`);
     writeStream.end();
 }
