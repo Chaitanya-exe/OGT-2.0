@@ -34,7 +34,6 @@ export const authOptions = {
 
         async signIn({ profile }) {
             try {
-                const img = profile.picture
                 const user = await userClient.users.findUnique({
                     where:{
                         email: profile.email

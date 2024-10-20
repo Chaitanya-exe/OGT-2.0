@@ -8,6 +8,7 @@ async function handler(req){
     try {
         const {projectId,answers} = await req.json();
         console.log(answers);
+        console.log(session);
         const session = await getToken({req});
         const temp = await userClient.project.findUnique({
             where:{
