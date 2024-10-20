@@ -15,6 +15,8 @@ const ClientLayout = ({ children }) => {
     const hasRedirectedBefore =
       localStorage.getItem("hasRedirectedBefore") === "true";
 
+    const registrationInfo = localStorage.getItem("registrationInfo"); 
+
     if ( hasRedirectedBefore && pathname === "/registration") {
       router.push("/");
     }

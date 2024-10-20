@@ -8,18 +8,13 @@ async function handler(req){
         
         const id = fetchId(req.url);
 
-        const {dob, role, skills, description, country, phNumber} = await req.json();
+        const {...info} = await req.json();
         const dbRes = await userClient.users.update({
             where:{
                 id: id
             },
             data:{
-                DOB:dob,
-                role: role,
-                skills: skills,
-                description: description,
-                phNumber: phNumber,
-                country: country
+                ...info
             }
         });
         console.log(dbRes);

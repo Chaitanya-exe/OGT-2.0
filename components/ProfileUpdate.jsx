@@ -35,7 +35,7 @@ console.log(updatedData);
             id="dob"
             type="date"
             name="dob"
-            value={updatedData.dob}
+            value={updatedData.DOB}
             placeholder="05/9/2003"
             className="border p-4 w-[300px] bg-transparent rounded-md block focus:outline outline-purple-400"
           />

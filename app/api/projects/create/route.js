@@ -9,7 +9,7 @@ async function handler(req){
         const session = await getToken({req});
         let {...info} = await req.json();
         info.stipend = parseFloat(info.stipend);
-        info.postedById = session.id;
+        info.postedById = session.user.id;
         const dbRes = await userClient.project.create({data:{
         ...info,
         }});

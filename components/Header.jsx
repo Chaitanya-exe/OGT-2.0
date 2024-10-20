@@ -14,11 +14,10 @@ import { IoMdLogOut } from "react-icons/io";
 
 import { FaUser } from "react-icons/fa6";
 import Link from "next/link";
+
 const Header = () => {
   const { data: session } = useSession();
   console.log(session);
- 
-
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -65,7 +64,7 @@ const Header = () => {
                 <Tooltip title="Account settings">
                   <IconButton onClick={handleClick}>
                     <Image
-                      src={`${session.user.image}`}
+                      src={session.user.img}
                       width={35}
                       height={35}
                       alt={session.user.name.charAt(0).toUpperCase()}
@@ -87,7 +86,8 @@ const Header = () => {
                   transformOrigin={{ horizontal: "right", vertical: "top" }}
                   anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
                 >
-                <Link href={session?.user.role === "Developer" ? "/developer" : "/employer" }>
+
+                <Link href={session?.user.role === "WORKER" ? "/developer" : "/employer" }>
                   <MenuItem
                     onClick={handleClose}
                     className="flex hover:bg-bgColor/15 gap-2 items-center py-3 "
@@ -131,9 +131,9 @@ const Header = () => {
             ) : (
               <div className="flex gap-2 items-center">
                 <button onClick={() => signIn()}>
-                  <Button type="primary" text="Login" className=" w-[106px]" />
+                  <Button type="primary" text="SignIn/SignUp" className=" w-[175px]" />
                 </button>
-                <Button type="secondary" text="Signup" className="w-[106px]" />
+                
               </div>
             )}
           </div>
