@@ -7,7 +7,25 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import {motion} from "framer-motion"
-import { transition } from "@/config/motion";
+import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
+
+// import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+// import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+
+function dateConverter(date,flag) {
+  if(flag === 0){
+    return new Date(date);
+  }else{
+    console.log(date.toLocaleString());
+    return date.toLocaleString();
+
+    
+
+  }
+
+
+}
 
 async function registerUser(form) {
   const res = await axios.post("http://localhost:3000/api/users/update", form);
@@ -55,9 +73,15 @@ const page = () => {
   });
   let totalSteps = 7;
 
+
+  console.log(formData);
+  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+    
     setFormData({ ...formData, [name]: value });
+    
     if (value.trim() !== "") {
       setCompletedSteps({ ...completedSteps, [stepCount]: true });
     } else {
@@ -75,10 +99,22 @@ const page = () => {
     }
   };
 
+ 
+
   const handleSkillsChange = (event, value) => {
     setFormData({ ...formData, skills: value });
     if (formData.skills != []) {
       setCompletedSteps({ ...completedSteps, [stepCount]: true });
+    }
+  };
+
+  const handleDateChange = (date) => {
+    
+      setFormData({ ...formData, DOB : date ? date.toISOString() : "" });
+      if (date) {
+      setCompletedSteps({ ...completedSteps, [stepCount]: true });
+    } else {
+      setCompletedSteps({ ...completedSteps, [stepCount]: false });
     }
   };
   const handleField = () => {
@@ -196,18 +232,26 @@ const page = () => {
               {" "}
               Enter Date of Birth :
             </label>
-            <input
+
+            <DatePicker
+              name="DOB"
+              selected={formData.DOB ? new Date(formData.DOB) : null}
+              onChange={(date) => handleDateChange(date)}
+              dateFormat="yyyy-MM-dd"
+              placeholderText="Select your date of birth"
+              className="border p-4 w-[340px] text-white bg-transparent rounded-md block focus:outline outline-purple-400"
+            />
+
+            {/* <input
               required
               onChange={handleChange}
-              // min="18"
-              // max="90"
-              id="dob"
+              id="DOB"
               type="date"
               name="DOB"
-              value={formData.DOB}
-              placeholder="05/9/2003"
+              value={dateConverter(formData.DOB, 1)}
+              placeholder="05/09/2003"
               className="border p-4 w-[300px] text-white bg-transparent rounded-md block focus:outline outline-purple-400"
-            />
+            /> */}
           </>
         );
       case 5:
@@ -272,8 +316,6 @@ const page = () => {
     }
   };
 
-  console.log(stepCount, completedSteps);
-
   if (stepCount === 6) {
     const response = registerUser(formData);
 
@@ -285,6 +327,7 @@ const page = () => {
       router.push("/developer");
     }
   }
+
   if(stepCount === 6){
     return <p>Loading.......</p>
   }
