@@ -1,8 +1,7 @@
 
-import "@/styles/globals.css";
 import Provider from "@/components/Provider";
 import ClientLayout from "./ClientLayout";
-
+import "../styles/globals.css"
 
 export const metadata = {
   title: "Get work done in your time",

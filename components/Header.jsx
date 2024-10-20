@@ -65,7 +65,7 @@ const Header = () => {
                 <Tooltip title="Account settings">
                   <IconButton onClick={handleClick}>
                     <Image
-                      src={session.user.img}
+                      src={session?.user.img}
                       width={35}
                       height={35}
                       alt={session.user.name.charAt(0).toUpperCase()}
@@ -95,7 +95,7 @@ const Header = () => {
                   >
                     <span className="secondary_grad p-1">
                       <Image
-                        src={session.user?.image}
+                        src={session.user?.img}
                         width={32}
                         height={32}
                         alt={session.user.name.charAt(0).toUpperCase()}

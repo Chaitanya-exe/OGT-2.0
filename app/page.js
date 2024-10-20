@@ -1,15 +1,17 @@
-"use client"
+"use client";
 import Tabs from "@/components/Tabs";
-import {motion } from "framer-motion"
+import { motion } from "framer-motion";
 import Sphere from "@/components/Sphere";
 import Index from "@/components/Steps/Index";
 import Testimonials from "@/components/Steps/Testimonials";
 import EgVideo from "@/components/EgVideo";
-import { fadeAnimation, headContentAnimation, headTextAnimation } from "@/config/motion";
+import {
+  fadeAnimation,
+  headContentAnimation,
+  headTextAnimation,
+} from "@/config/motion";
 
 export default function Home() {
- 
-
   return (
     <main className="min-h-screen *:p-10  ">
       <motion.div className="max-w-5xl mt-16 mx-auto text-center flex flex-col gap-5 items-center">
