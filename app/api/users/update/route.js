@@ -1,12 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 import { fetchId, createError } from "@/utils";
+import { getToken } from "next-auth/jwt";
 
 const userClient = new PrismaClient();
 
 async function handler(req){
     try {
-        
-        const id = fetchId(req.url);
+        const session = await getToken({req});
+        const id = session.user.id;
 
         const {...info} = await req.json();
         const dbRes = await userClient.users.update({
