@@ -14,7 +14,6 @@ const ClientLayout = ({ children }) => {
   useEffect(() => {
     const hasRedirectedBefore =
       localStorage.getItem("hasRedirectedBefore") === "true";
-    // const registrationInfo = localStorage.getItem("registrationInfo"); // Check for existing registration information
 
     if ( hasRedirectedBefore && pathname === "/registration") {
       router.push("/");

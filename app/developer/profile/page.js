@@ -13,9 +13,7 @@ const MyProfile = () => {
   const [appliedProjects, setAplliedProjects] = useState([]);
   const [showUpdateForm,setShowUpdateForm] = useState(true);
   // const [appliedProjects, setAplliedProjects] = useState([]);
-  const registrationInfo = JSON.parse(localStorage.getItem("registrationInfo"));
-
-  console.log(registrationInfo);
+ 
 
   useEffect(() => {
     const fetchAppliedProjects = async () => {};
@@ -121,8 +119,8 @@ const MyProfile = () => {
         <div className="max-w-2xl">
           <span className="text-md font-medium">Skills : </span>
           <div className="flex text-sm flex-wrap gap-x-4 gap-y-3 my-2">
-            {registrationInfo?.skills?.length > 0 ? (
-              registrationInfo.skills.map((skill, index) => (
+            {session?.user.skills?.length > 0 ? (
+              session?.user.skills.map((skill, index) => (
                 <span
                   key={index}
                   className="bg-BO/5 border border-e1/20 rounded-[24px] p-2"
