@@ -67,8 +67,7 @@ export const authOptions = {
                 });
                 
                 if(dbRes){
-                    const info = dbRes;
-                    token.user = info;
+                    token.user = dbRes;
                 }
             }
             return token
