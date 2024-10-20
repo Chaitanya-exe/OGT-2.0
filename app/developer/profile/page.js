@@ -13,7 +13,7 @@ const MyProfile = () => {
   const [appliedProjects, setAplliedProjects] = useState([]);
   const [showUpdateForm,setShowUpdateForm] = useState(true);
   // const [appliedProjects, setAplliedProjects] = useState([]);
-  const {user} = session;
+  // const {user} = session;
 
 
   useEffect(() => {

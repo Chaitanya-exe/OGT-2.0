@@ -1,6 +1,7 @@
 "use client";
 
 import { tabs } from "@/config/constants";
+import axios from "axios";
 import {
   Autocomplete,
   Chip,
@@ -11,11 +12,11 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 
-async function regiterFrom(data) {
-  const res = await axios.post("http://localhost:3000/api/users/update", data);
+
+async function registerUser(form){
+  const res = await axios.post("https://localhost:3000/api/users/update", form);
   const response = await res.json();
   return response;
-  
 }
 
 const page = () => {
@@ -115,7 +116,7 @@ const page = () => {
                 />{" "}
                 <label htmlFor="employer" className="text-lg mx-2">
                   {" "}
-                  Employer
+                  Client
                 </label>
               </div>
             </div>
@@ -276,14 +277,15 @@ const page = () => {
   console.log(stepCount, completedSteps);
 
  if (stepCount === 6) {
-  const res = regiterFrom(formData);
 
+   const response = registerUser(formData);
 
-   if (res?.role === "CLIENT") {
+   
+   if (response.role === "CLIENT") {
      router.push("/employer");
    }
 
-   if (res?.role === "WORKER") {
+   if (response.role === "WORKER") {
      router.push("/developer");
    }
  }

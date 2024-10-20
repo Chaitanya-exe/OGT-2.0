@@ -5,6 +5,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import Button from "./ui/Button";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Divider from "@mui/material/Divider";
@@ -107,7 +108,7 @@ const Header = () => {
                     </div>
                   </MenuItem>
 
-                </Link>
+                  </Link>
                   <Link href={"/developer/profile"}>
                     <MenuItem
                       onClick={handleClose}
