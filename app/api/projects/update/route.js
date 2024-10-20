@@ -10,7 +10,7 @@ async function handler(req){
         const session = await getSession({req});
         const dbRes = await userClient.project.update({
             where:{
-                postedById: session.id
+                postedById: session.user.id
             },
             data:{...info}
         }); 

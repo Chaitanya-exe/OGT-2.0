@@ -64,7 +64,7 @@ const Header = () => {
                 <Tooltip title="Account settings">
                   <IconButton onClick={handleClick}>
                     <Image
-                      src={`${session.user.image}`}
+                      src={session.user.img}
                       width={35}
                       height={35}
                       alt={session.user.name.charAt(0).toUpperCase()}
@@ -86,25 +86,25 @@ const Header = () => {
                   transformOrigin={{ horizontal: "right", vertical: "top" }}
                   anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
                 >
-                  <Link href={session?.user.role === "WORKER" ? "/developer" : "/employer"}>
-                    <MenuItem
-                      onClick={handleClose}
-                      className="flex hover:bg-bgColor/15 gap-2 items-center py-3 "
-                    >
-                      <span className="secondary_grad p-1">
-                        <Image
-                          src={session.user?.image}
-                          width={32}
-                          height={32}
-                          alt={session.user.name.charAt(0).toUpperCase()}
-                          className="rounded-full "
-                        />
-                      </span>
-                      <div>
-                        <p>{session.user.name}</p>
-                        <p className="text-sm  text-BO">Role</p>
-                      </div>
-                    </MenuItem>
+                <Link href={session?.user.role === "WORKER" ? "/developer" : "/employer" }>
+                  <MenuItem
+                    onClick={handleClose}
+                    className="flex hover:bg-bgColor/15 gap-2 items-center py-3 "
+                  >
+                    <span className="secondary_grad p-1">
+                      <Image
+                        src={session.user?.image}
+                        width={32}
+                        height={32}
+                        alt={session.user.name.charAt(0).toUpperCase()}
+                        className="rounded-full "
+                      />
+                    </span>
+                    <div>
+                      <p>{session.user.name}</p>
+                      <p className="text-sm  text-BO">Role</p>
+                    </div>
+                  </MenuItem>
 
                   </Link>
                   <Link href={"/developer/profile"}>
@@ -130,9 +130,9 @@ const Header = () => {
             ) : (
               <div className="flex gap-2 items-center">
                 <button onClick={() => signIn()}>
-                  <Button type="primary" text="Login" className=" w-[106px]" />
+                  <Button type="primary" text="SignIn/SignUp" className=" w-[175px]" />
                 </button>
-                <Button type="secondary" text="Signup" className="w-[106px]" />
+                
               </div>
             )}
           </div>

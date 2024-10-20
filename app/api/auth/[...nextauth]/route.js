@@ -19,11 +19,8 @@ export const authOptions = {
     callbacks: {
         async session({ session, token }) {
             try {
-                if(token && token.id){
-                    session.user.id = token.id;
-                    session.user.email = token.email;
-                    session.user.role = token.role;
-                    session.user.username = token.username;
+                if(token && token.user.id){
+                    session.user = token.user;
                 }
                 return session;
             } catch (error) {
@@ -70,10 +67,7 @@ export const authOptions = {
                 });
                 
                 if(dbRes){
-                    token.id = dbRes.id;
-                    token.email = dbRes.email;
-                    token.username = dbRes.Username;
-                    token.role = dbRes.role;
+                    token.user = dbRes;
                 }
             }
             return token

@@ -9,29 +9,40 @@ async function handler(req){
         const {projectId,answers} = await req.json();
         console.log(answers);
         const session = await getToken({req});
-        const project = await userClient.project.update({
+        const temp = await userClient.project.findUnique({
             where:{
                 id: projectId
-            },
-            data:{
-                requests:{
-                    push:[session.id]
-                }
             }
         });
-        const dbRes = await userClient.applications.create({
-            data:{
-                applicantId: session.id,
-                projectId: project.id,
-                answers: {
-                    set:answers
+        const applied = temp.requests.findIndex(session.user.id);
+        if(applied !== -1){
+
+            const project = await userClient.project.update({
+                where:{
+                    id: projectId
+                },
+                data:{
+                    requests:{
+                        push:[session.user.id]
+                    }
                 }
+            });
+            const dbRes = await userClient.applications.create({
+                data:{
+                    applicantId: session.user.id,
+                    projectId: project.id,
+                    answers: {
+                        set:answers
+                    }
+                }
+            });
+            if(dbRes){
+                return Response.json({response:"SUCCESS"},{status:201});
+            } else{
+                throw new Error("unable to apply");
             }
-        });
-        if(dbRes){
-            return Response.json({response:"SUCCESS"},{status:201});
         } else{
-            throw new Error("unable to apply");
+            return Response.json({response:"already applied"},{status:403});
         }
     } catch (error) {
         console.log(error);
