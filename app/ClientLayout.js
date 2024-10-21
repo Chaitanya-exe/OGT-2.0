@@ -11,18 +11,45 @@ const ClientLayout = ({ children }) => {
   const { data: session } = useSession();
   const router = useRouter();
  
+  // useEffect(() => {
+  //   const hasRedirectedBefore =
+  //     localStorage.getItem("hasRedirectedBefore") === "true";
+
+  //   // const registrationInfo = localStorage.getItem("registrationInfo"); 
+
+  //   if ( hasRedirectedBefore && pathname === "/registration") {
+  //     router.push("/");
+  //   }
+
+  //   if (session?.user && !hasRedirectedBefore ) {
+  //     router.push("/registration");
+  //     // localStorage.setItem("hasRedirectedBefore", "true");
+  //   }
+  // }, [session, router, pathname]);
+
+
   useEffect(() => {
-    const hasRedirectedBefore =
-      localStorage.getItem("hasRedirectedBefore") === "true";
-    const registrationInfo = localStorage.getItem("registrationInfo"); 
+    if (session) {
+      const user = session.user;
+      const isUserIncomplete =
+        !user?.name ||
+        !user?.email ||
+        !user?.role ||
+        !user?.phNumber ||
+        !user?.country ||
+        !user?.description ||
+        !user?.dob ||
+        !(user?.skills && user.skills.length > 0);
 
-    if (hasRedirectedBefore && pathname === "/registration") {
-      router.push("/");
-    }
+      // Redirect to /registration if any fields are incomplete
+      if (isUserIncomplete && pathname !== "/registration") {
+        router.push("/registration");
+      }
 
-    if (session?.user && !hasRedirectedBefore && !registrationInfo) {
-      router.push("/registration");
-      localStorage.setItem("hasRedirectedBefore", "true");
+      // Redirect to home page (/) if the user is complete and on the registration page
+      if (!isUserIncomplete && pathname === "/registration") {
+        router.push("/");
+      }
     }
   }, [session, router, pathname]);
 

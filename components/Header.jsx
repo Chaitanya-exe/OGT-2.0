@@ -18,6 +18,7 @@ import Link from "next/link";
 
 const Header = () => {
   const { data: session } = useSession();
+  console.log(session);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -64,7 +65,7 @@ const Header = () => {
                 <Tooltip title="Account settings">
                   <IconButton onClick={handleClick}>
                     <Image
-                      src={session.user.img}
+                      src={session?.user.img}
                       width={35}
                       height={35}
                       alt={session.user.name.charAt(0).toUpperCase()}
@@ -86,6 +87,7 @@ const Header = () => {
                   transformOrigin={{ horizontal: "right", vertical: "top" }}
                   anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
                 >
+
                 <Link href={session?.user.role === "WORKER" ? "/developer" : "/employer" }>
                   <MenuItem
                     onClick={handleClose}
@@ -93,7 +95,7 @@ const Header = () => {
                   >
                     <span className="secondary_grad p-1">
                       <Image
-                        src={session.user?.image}
+                        src={session.user?.img}
                         width={32}
                         height={32}
                         alt={session.user.name.charAt(0).toUpperCase()}

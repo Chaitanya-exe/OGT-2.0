@@ -13,7 +13,7 @@ const MyProfile = () => {
   const [appliedProjects, setAplliedProjects] = useState([]);
   const [showUpdateForm,setShowUpdateForm] = useState(true);
   // const [appliedProjects, setAplliedProjects] = useState([]);
-  const {user} = session;
+  // const {user} = session;
 
 
   useEffect(() => {
@@ -120,6 +120,7 @@ const MyProfile = () => {
         <div className="max-w-2xl">
           <span className="text-md font-medium">Skills : </span>
           <div className="flex text-sm flex-wrap gap-x-4 gap-y-3 my-2">
+
             {user?.skills?.length > 0 ? (
               user.skills.map((skill, index) => (
                 <span

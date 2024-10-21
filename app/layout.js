@@ -1,11 +1,7 @@
 
-import "@/styles/globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Provider from "@/components/Provider";
 import ClientLayout from "./ClientLayout";
-
-// const inter = Inter({ subsets: ["latin"] });
+import "../styles/globals.css"
 
 export const metadata = {
   title: "Get work done in your time",
