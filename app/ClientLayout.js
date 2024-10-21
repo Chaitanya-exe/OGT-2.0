@@ -30,7 +30,7 @@ const ClientLayout = ({ children }) => {
 
   useEffect(() => {
     if (session) {
-      const user = session.user;
+      const user = session?.user;
 
       if (!user?.role && pathname !== "/registration") {
         router.push("/registration");
