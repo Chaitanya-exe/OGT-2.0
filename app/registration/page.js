@@ -8,6 +8,7 @@ import {
   TextField,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 
@@ -18,6 +19,8 @@ async function registerUser(form){
 }
 
 const page = () => {
+  const {data: session} = useSession();
+  console.log(session);
   const [stepCount, setStepCount] = useState(0);
   const router = useRouter();
  
@@ -43,7 +46,7 @@ const page = () => {
       .catch((error) => {
         console.error("Error fetching country names:", error);
       });
-  });
+  },[]);
 
   const [completedSteps, setCompletedSteps] = useState({
     0: false,
@@ -88,6 +91,7 @@ const page = () => {
       setCompletedSteps({ ...completedSteps, [stepCount]: true });
     }
   };
+
   const handleField = () => {
     switch (stepCount) {
       case 0:
@@ -297,7 +301,7 @@ const page = () => {
   return (
     
     <section className="flex flex-col mx-12 max-w-2xl sm:mx-auto items-center justify-center mt-28">
-      <div className="spacce-y-12">{handleField()}</div>
+      <div className="spacce-y-12">{()=>{handleField()}}</div>
       <div className="flex mt-20 justify-between w-full">
         <button
           disabled={stepCount === 0}
