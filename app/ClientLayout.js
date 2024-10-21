@@ -31,23 +31,12 @@ const ClientLayout = ({ children }) => {
   useEffect(() => {
     if (session) {
       const user = session.user;
-      const isUserIncomplete =
-        !user?.name ||
-        !user?.email ||
-        !user?.role ||
-        !user?.phNumber ||
-        !user?.country ||
-        !user?.description ||
-        !user?.dob ||
-        !(user?.skills && user.skills.length > 0);
 
-      // Redirect to /registration if any fields are incomplete
-      if (isUserIncomplete && pathname !== "/registration") {
+      if (!user?.role && pathname !== "/registration") {
         router.push("/registration");
       }
 
-      // Redirect to home page (/) if the user is complete and on the registration page
-      if (!isUserIncomplete && pathname === "/registration") {
+      if (user?.role && pathname === "/registration") {
         router.push("/");
       }
     }

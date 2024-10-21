@@ -7,53 +7,37 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
-
-// import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-// import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-
-function dateConverter(date, flag) {
-  if (flag === 0) {
-    return new Date(date);
-  } else {
-    console.log(date.toLocaleString());
-    return date.toLocaleString();
-
-
-
-  }
-
-
-}
+import Loader from "@/components/Loader";
 
 const registerUser = async (form) => {
   try {
-    const res = await axios.post("http://localhost:3000/api/users/update", form);
+    const res = await axios.post(
+      "http://localhost:3000/api/users/update",
+      form
+    );
     const response = res.data;
-    if (response.role === "CLIENT") {
-      router.push("/employer");
-    }
 
-    if (response.role === "WORKER") {
-      router.push("/developer");
-    }
+    console.log("response from function : ", response);
+
+    return response;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
-
+};
 const page = () => {
   const { data: session } = useSession();
   console.log(session);
   const [stepCount, setStepCount] = useState(0);
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     role: "",
     phNumber: "",
-    country: "",
+    country: "Afghanistan",
     description: "",
     DOB: "",
     skills: ["Web Developement", "Designing"],
@@ -84,10 +68,6 @@ const page = () => {
   });
   let totalSteps = 7;
 
-
-  console.log(formData);
-
-
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -104,20 +84,26 @@ const page = () => {
     setStepCount((prev) => Math.max(prev - 1, 0));
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (completedSteps[stepCount]) {
-      setStepCount((prev) => Math.min(prev + 1, totalSteps - 1));
+      if (stepCount === 5) {
+        setStepCount(6);
+        setLoading(true);
+
+        const response = await registerUser(formData);
+        console.log("response print", response);
+        setLoading(false);
+
+        if (response?.response.role === "WORKER") {
+          router.push("/developer");
+        } else if (response?.response.role === "CLIENT") {
+          router.push("/client");
+        }
+      } else {
+        setStepCount((prev) => Math.min(prev + 1, totalSteps - 1));
+      }
     }
   };
-
-  const handleDate = (event) => {
-    let value = event.target.value;
-    value = new Date(`${value}`)
-    setFormData({ ...formData, DOB: value });
-    return value;
-  }
-
-
 
   const handleSkillsChange = (event, value) => {
     setFormData({ ...formData, skills: value });
@@ -127,7 +113,6 @@ const page = () => {
   };
 
   const handleDateChange = (date) => {
-
     setFormData({ ...formData, DOB: date ? date.toISOString() : "" });
     if (date) {
       setCompletedSteps({ ...completedSteps, [stepCount]: true });
@@ -255,10 +240,22 @@ const page = () => {
               name="DOB"
               selected={formData.DOB ? new Date(formData.DOB) : null}
               onChange={(date) => handleDateChange(date)}
-              dateFormat="yyyy-MM-dd"
+              dateFormat="dd-MM-yyyy"
               placeholderText="Select your date of birth"
               className="border p-4 w-[340px] text-white bg-transparent rounded-md block focus:outline outline-purple-400"
+              showYearDropdown 
+              scrollableYearDropdown
+              yearDropdownItemNumber={8} 
             />
+
+            {/* <DatePicker
+              name="DOB"
+              selected={formData.DOB ? new Date(formData.DOB) : null}
+              onChange={(date) => handleDateChange(date)}
+              dateFormat="dd-MM-yyyy"
+              placeholderText="Select your date of birth"
+              className="border p-4 w-[340px] text-white bg-transparent rounded-md block focus:outline outline-purple-400"
+            /> */}
 
             {/* <input
               required
@@ -334,42 +331,47 @@ const page = () => {
     }
   };
 
-  if (stepCount === 6) {
-    registerUser(formData);
-  }
-
-  // if(stepCount === 6){
-  //   return <p>Loading.......</p>
-  // }
-
   return (
-
-    <section className="flex flex-col mx-12 max-w-2xl sm:mx-auto items-center justify-center mt-28">
-      <motion.div initial={{ x: 10, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 1, damping: 12, type: 'spring' }} exit={{ x: -100, opacity: 0 }} className="spacce-y-12">{handleField()}</motion.div>
-      <div className="flex mt-20 justify-between w-full">
-        <button
-          disabled={stepCount === 0}
-          onClick={handlePrev}
-          className={` px-7 py-0.5 rounded-[22px] border border-white/10
-    ${stepCount === 0
-              ? "border border-white/10 bg-transparent hover:bg-white/5"
-              : "hover:primary_grad"
-            }`}
+    <section>
+      {loading ? (
+        <Loader />
+      ) : (
+        <motion.div
+          initial={{ x: 10, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 1, damping: 12, type: "spring" }}
+          exit={{ x: -100, opacity: 0 }}
+          className="flex flex-col mx-12 max-w-2xl sm:mx-auto items-center justify-center mt-28"
         >
-          Previous
-        </button>
-        <button
-          disabled={!completedSteps[stepCount]}
-          onClick={handleNext}
-          className={`secondary_button px-10 py-0.5 rounded-[22px] 
-    ${!completedSteps[stepCount]
-              ? "border border-white/10 bg-transparent"
-              : "hover:primary_grad"
-            }`}
-        >
-          {stepCount === 5 ? "Submit" : "Next"}
-        </button>
-      </div>
+          <div className="spacce-y-12">{handleField()}</div>
+          <div className="flex mt-20 justify-between w-full">
+            <button
+              disabled={stepCount === 0}
+              onClick={handlePrev}
+              className={` px-7 py-0.5 rounded-[22px] border border-white/10
+    ${
+      stepCount === 0
+        ? "border border-white/10 bg-transparent hover:bg-white/5"
+        : "hover:primary_grad"
+    }`}
+            >
+              Previous
+            </button>
+            <button
+              disabled={!completedSteps[stepCount] || loading}
+              onClick={handleNext}
+              className={`secondary_button px-10 py-0.5 rounded-[22px] 
+    ${
+      !completedSteps[stepCount]
+        ? "border border-white/10 bg-transparent"
+        : "hover:primary_grad"
+    }`}
+            >
+              {stepCount === 5 ? "Submit" : "Next"}
+            </button>
+          </div>
+        </motion.div>
+      )}
     </section>
   );
 };
