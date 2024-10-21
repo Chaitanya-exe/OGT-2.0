@@ -12,8 +12,6 @@ const MyProfile = () => {
   const { data: session } = useSession();
   const [appliedProjects, setAplliedProjects] = useState([]);
   const [showUpdateForm,setShowUpdateForm] = useState(true);
-  // const [appliedProjects, setAplliedProjects] = useState([]);
-  // const {user} = session;
 
 
   useEffect(() => {
@@ -76,9 +74,7 @@ const MyProfile = () => {
   return (
     <section className="">
       {showUpdateForm && (
-        <div className="fixed z-10 top-0 bottom-0 left-0 flex py-20 justify-center w-screen h-screen bg-black/30">
           <ProfileUpdate setShowUpdateForm={setShowUpdateForm} />
-        </div>
       )}
       <div className="border shadow flex flex-col gap-6 border-white/10 rounded-[4px] py-8 my-12 px-12 max-w-[1200px] mx-auto ">
         <div className="flex gap-4 items-center w-full">
@@ -121,8 +117,8 @@ const MyProfile = () => {
           <span className="text-md font-medium">Skills : </span>
           <div className="flex text-sm flex-wrap gap-x-4 gap-y-3 my-2">
 
-            {user?.skills?.length > 0 ? (
-              user.skills.map((skill, index) => (
+            {session?.user?.skills?.length > 0 ? (
+              session?.user.skills.map((skill, index) => (
                 <span
                   key={index}
                   className="bg-BO/5 border border-e1/20 rounded-[24px] p-2"
