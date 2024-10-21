@@ -4,38 +4,49 @@ import { tabs } from "@/config/constants";
 import axios from "axios";
 import { Autocomplete, Chip, TextField } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
-import {motion} from "framer-motion"
+import { motion } from "framer-motion"
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 
 // import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 // import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
-function dateConverter(date,flag) {
-  if(flag === 0){
+function dateConverter(date, flag) {
+  if (flag === 0) {
     return new Date(date);
-  }else{
+  } else {
     console.log(date.toLocaleString());
     return date.toLocaleString();
 
-    
+
 
   }
 
 
 }
 
-async function registerUser(form) {
-  const res = await axios.post("http://localhost:3000/api/users/update", form);
-  console.log(res);
-  const response = await res.json();
-  
-  return response;
+const registerUser = async (form) => {
+  try {
+    const res = await axios.post("http://localhost:3000/api/users/update", form);
+    const response = res.data;
+    if (response.role === "CLIENT") {
+      router.push("/employer");
+    }
+
+    if (response.role === "WORKER") {
+      router.push("/developer");
+    }
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 const page = () => {
+  const { data: session } = useSession();
+  console.log(session);
   const [stepCount, setStepCount] = useState(0);
   const router = useRouter();
 
@@ -44,7 +55,7 @@ const page = () => {
     phNumber: "",
     country: "",
     description: "",
-    DOB : "",
+    DOB: "",
     skills: ["Web Developement", "Designing"],
   });
 
@@ -61,7 +72,7 @@ const page = () => {
       .catch((error) => {
         console.error("Error fetching country names:", error);
       });
-  });
+  }, []);
 
   const [completedSteps, setCompletedSteps] = useState({
     0: false,
@@ -75,13 +86,13 @@ const page = () => {
 
 
   console.log(formData);
-  
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    
+
     setFormData({ ...formData, [name]: value });
-    
+
     if (value.trim() !== "") {
       setCompletedSteps({ ...completedSteps, [stepCount]: true });
     } else {
@@ -102,11 +113,11 @@ const page = () => {
   const handleDate = (event) => {
     let value = event.target.value;
     value = new Date(`${value}`)
-    setFormData({...formData, DOB:value });
+    setFormData({ ...formData, DOB: value });
     return value;
   }
 
- 
+
 
   const handleSkillsChange = (event, value) => {
     setFormData({ ...formData, skills: value });
@@ -116,9 +127,9 @@ const page = () => {
   };
 
   const handleDateChange = (date) => {
-    
-      setFormData({ ...formData, DOB : date ? date.toISOString() : "" });
-      if (date) {
+
+    setFormData({ ...formData, DOB: date ? date.toISOString() : "" });
+    if (date) {
       setCompletedSteps({ ...completedSteps, [stepCount]: true });
     } else {
       setCompletedSteps({ ...completedSteps, [stepCount]: false });
@@ -324,15 +335,7 @@ const page = () => {
   };
 
   if (stepCount === 6) {
-    const response = registerUser(formData);
-
-    if (response.role === "CLIENT") {
-      router.push("/employer");
-    }
-
-    if (response.role === "WORKER") {
-      router.push("/developer");
-    }
+    registerUser(formData);
   }
 
   // if(stepCount === 6){
@@ -342,17 +345,16 @@ const page = () => {
   return (
 
     <section className="flex flex-col mx-12 max-w-2xl sm:mx-auto items-center justify-center mt-28">
-      <motion.div initial={{x:10,opacity:0}} animate={{x:0,opacity:1}} transition={{duration:1,damping:12,type:'spring'}} exit={{x:-100,opacity:0}} className="spacce-y-12">{handleField()}</motion.div>
+      <motion.div initial={{ x: 10, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 1, damping: 12, type: 'spring' }} exit={{ x: -100, opacity: 0 }} className="spacce-y-12">{handleField()}</motion.div>
       <div className="flex mt-20 justify-between w-full">
         <button
           disabled={stepCount === 0}
           onClick={handlePrev}
           className={` px-7 py-0.5 rounded-[22px] border border-white/10
-    ${
-      stepCount === 0
-        ? "border border-white/10 bg-transparent hover:bg-white/5"
-        : "hover:primary_grad"
-    }`}
+    ${stepCount === 0
+              ? "border border-white/10 bg-transparent hover:bg-white/5"
+              : "hover:primary_grad"
+            }`}
         >
           Previous
         </button>
@@ -360,11 +362,10 @@ const page = () => {
           disabled={!completedSteps[stepCount]}
           onClick={handleNext}
           className={`secondary_button px-10 py-0.5 rounded-[22px] 
-    ${
-      !completedSteps[stepCount]
-        ? "border border-white/10 bg-transparent"
-        : "hover:primary_grad"
-    }`}
+    ${!completedSteps[stepCount]
+              ? "border border-white/10 bg-transparent"
+              : "hover:primary_grad"
+            }`}
         >
           {stepCount === 5 ? "Submit" : "Next"}
         </button>
