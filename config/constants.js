@@ -1,5 +1,8 @@
 import { Autocomplete, Chip, TextField } from "@mui/material";
 import { IoClose } from "react-icons/io5";
+import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
+
 
 export const services = [
   {
@@ -360,7 +363,7 @@ export const projectsData = [
 ];
 
 
-export const SkillsInput =() => {
+export const SkillsInput =({value,onChangeFunction}) => {
   return (
     <Autocomplete
       multiple
@@ -368,8 +371,8 @@ export const SkillsInput =() => {
       options={tabs}
       getOptionLabel={(option) => option}
       defaultValue={[tabs[3]]}
-      value={formData.skills}
-      onChange={handleSkillsChange}
+      value={value}
+      onChange={onChangeFunction}
       className="border-b text-white w-full border-white/70 focus:outline-none min-w-2xl"
       renderInput={(params) => (
         <TextField
@@ -412,5 +415,42 @@ export const SkillsInput =() => {
         className: "bg-l2 m-2 text-capitalize text-white",
       }}
     />
+  );
+}
+
+export const DatePickerInput = ({value,onChangeFunction}) =>{
+  return (
+    <DatePicker
+      name="DOB"
+      selected={value ? new Date(value) : null}
+      onChange={(date) => onChangeFunction(date)}
+      dateFormat="dd-MM-yyyy"
+      placeholderText="Select your date of birth"
+      className="border p-4 w-[340px] text-white bg-transparent rounded-md block focus:outline outline-purple-400"
+      showYearDropdown
+      scrollableYearDropdown
+      yearDropdownItemNumber={50}
+    />
+  );
+}
+
+
+export const CountryInput = ({value,onChangeFunction,countryList}) =>{
+  return (
+    <select
+      value={value}
+      name="country"
+      onChange={onChangeFunction}
+      className=" bg-transparent border border-white/10   p-3 rounded-md focus:outline outline-purple-400"
+    >
+      {countryList?.map((country) => (
+        <option
+          value={country}
+          className="bg-white/5 text-bgColor hover:white/10"
+        >
+          {country}
+        </option>
+      ))}
+    </select>
   );
 }
