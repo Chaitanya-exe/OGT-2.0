@@ -335,9 +335,9 @@ const page = () => {
     }
   }
 
-  if(stepCount === 6){
-    return <p>Loading.......</p>
-  }
+  // if(stepCount === 6){
+  //   return <p>Loading.......</p>
+  // }
 
   return (
 
