@@ -20,7 +20,12 @@ export const authOptions = {
         async session({ session, token }) {
             try {
                 if(token && token.user.id){
-                    session.user = token.user;
+                    const newInfo = await userClient.users.findUnique({
+                        where: {
+                            id: token.user.id
+                        }
+                    });
+                    session.user = newInfo;
                 }
                 return session;
             } catch (error) {
