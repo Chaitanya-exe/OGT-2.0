@@ -99,6 +99,13 @@ const page = () => {
     }
   };
 
+  const handleDate = (event) => {
+    let value = event.target.value;
+    value = new Date(`${value}`)
+    setFormData({...formData, DOB:value });
+    return value;
+  }
+
  
 
   const handleSkillsChange = (event, value) => {
