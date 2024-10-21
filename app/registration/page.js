@@ -248,25 +248,7 @@ const page = () => {
               yearDropdownItemNumber={8} 
             />
 
-            {/* <DatePicker
-              name="DOB"
-              selected={formData.DOB ? new Date(formData.DOB) : null}
-              onChange={(date) => handleDateChange(date)}
-              dateFormat="dd-MM-yyyy"
-              placeholderText="Select your date of birth"
-              className="border p-4 w-[340px] text-white bg-transparent rounded-md block focus:outline outline-purple-400"
-            /> */}
-
-            {/* <input
-              required
-              onChange={handleChange}
-              id="DOB"
-              type="date"
-              name="DOB"
-              value={dateConverter(formData.DOB, 1)}
-              placeholder="05/09/2003"
-              className="border p-4 w-[300px] text-white bg-transparent rounded-md block focus:outline outline-purple-400"
-            /> */}
+            
           </>
         );
       case 5:

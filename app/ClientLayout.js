@@ -10,29 +10,12 @@ const ClientLayout = ({ children }) => {
   const pathname = usePathname();
   const { data: session } = useSession();
   const router = useRouter();
- 
-  // useEffect(() => {
-  //   const hasRedirectedBefore =
-  //     localStorage.getItem("hasRedirectedBefore") === "true";
-
-  //   // const registrationInfo = localStorage.getItem("registrationInfo"); 
-
-  //   if ( hasRedirectedBefore && pathname === "/registration") {
-  //     router.push("/");
-  //   }
-
-  //   if (session?.user && !hasRedirectedBefore ) {
-  //     router.push("/registration");
-  //     // localStorage.setItem("hasRedirectedBefore", "true");
-  //   }
-  // }, [session, router, pathname]);
-
 
   useEffect(() => {
     if (session) {
       const user = session.user;
-
-      if (!user?.role && pathname !== "/registration") {
+      console.log(user);
+      if (!user?.role === "NULL"  && pathname !== "/registration") {
         router.push("/registration");
       }
 
