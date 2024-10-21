@@ -1,16 +1,12 @@
 "use client";
 
-import { tabs } from "@/config/constants";
+import { CountryInput, DatePickerInput, SkillsInput } from "@/config/constants";
 import axios from "axios";
-import { Autocomplete, Chip, TextField } from "@mui/material";
+import Loader from "@/components/Loader";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
-import { IoClose } from "react-icons/io5";
 import { motion } from "framer-motion";
-import "react-datepicker/dist/react-datepicker.css";
-import DatePicker from "react-datepicker";
-import Loader from "@/components/Loader";
 
 const registerUser = async (form) => {
   try {
@@ -20,7 +16,7 @@ const registerUser = async (form) => {
     );
     const response = res.data;
 
-    console.log("response from function : ", response);
+    // console.log("response from function : ", response);
 
     return response;
   } catch (error) {
@@ -43,7 +39,7 @@ const page = () => {
     skills: ["Web Developement", "Designing"],
   });
 
-  const [conuntryList, setCountryList] = useState([]);
+  const [countryList, setCountryList] = useState([]);
 
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
@@ -91,7 +87,7 @@ const page = () => {
         setLoading(true);
 
         const response = await registerUser(formData);
-        console.log("response print", response);
+        // console.log("response print", response);
         setLoading(false);
 
         if (response?.response.role === "WORKER") {
@@ -116,8 +112,6 @@ const page = () => {
     setFormData({ ...formData, DOB: date ? date.toISOString() : "" });
     if (date) {
       setCompletedSteps({ ...completedSteps, [stepCount]: true });
-    } else {
-      setCompletedSteps({ ...completedSteps, [stepCount]: false });
     }
   };
   const handleField = () => {
@@ -199,21 +193,11 @@ const page = () => {
               {" "}
               country :
             </label>
-            <select
+            <CountryInput
               value={formData.country}
-              name="country"
-              onChange={handleChange}
-              className=" bg-transparent border border-white/10   p-3 rounded-md focus:outline outline-purple-400"
-            >
-              {conuntryList.map((country) => (
-                <option
-                  value={country}
-                  className="bg-white/5 text-bgColor hover:white/10"
-                >
-                  {country}
-                </option>
-              ))}
-            </select>
+              onChangeFunction={handleChange}
+              countryList={countryList}
+            />
           </>
         );
       case 3:
@@ -236,16 +220,9 @@ const page = () => {
               Enter Date of Birth :
             </label>
 
-            <DatePicker
-              name="DOB"
-              selected={formData.DOB ? new Date(formData.DOB) : null}
-              onChange={(date) => handleDateChange(date)}
-              dateFormat="dd-MM-yyyy"
-              placeholderText="Select your date of birth"
-              className="border p-4 w-[340px] text-white bg-transparent rounded-md block focus:outline outline-purple-400"
-              showYearDropdown 
-              scrollableYearDropdown
-              yearDropdownItemNumber={8} 
+            <DatePickerInput
+              value={formData.DOB}
+              onChangeFunction={handleDateChange}
             />
 
             
@@ -258,55 +235,9 @@ const page = () => {
               {" "}
               Enter Your Skills :
             </label>
-            <Autocomplete
-              multiple
-              id="tags-standard"
-              options={tabs}
-              getOptionLabel={(option) => option}
-              defaultValue={[tabs[3]]}
+            <SkillsInput
               value={formData.skills}
-              onChange={handleSkillsChange}
-              className="border-b text-white w-full border-white/70 focus:outline-none min-w-2xl"
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  variant="standard"
-                  label="Choose skills "
-                  placeholder="+ Add Skils"
-                  className="text-white text-capitalize"
-                  InputLabelProps={{
-                    className: "text-white ", // Custom text color for label
-                  }}
-                  InputProps={{
-                    ...params.InputProps,
-                    className:
-                      "text-white bg-bgColor min-w-2xl flex flex-wrap gap-x-3 gap-y-2",
-                  }}
-                />
-              )}
-              renderOption={(props, option) => (
-                <li
-                  {...props}
-                  className="text-white px-2  py-3 min-w-2xl bg-bgColor/90 hover:bg-bgColor/70" // Custom text and background color for each option
-                >
-                  {option}
-                </li>
-              )}
-              renderTags={(value, getTagProps) =>
-                value.map((option, index) => (
-                  <Chip
-                    key={index}
-                    variant="outlined"
-                    label={option}
-                    {...getTagProps({ index })}
-                    className="bg-l2 m-2 text-capitalize text-white"
-                    deleteIcon={<IoClose className="text-white" />} // Custom cross icon color
-                  />
-                ))
-              }
-              ChipProps={{
-                className: "bg-l2 m-2 text-capitalize text-white",
-              }}
+              onChangeFunction={handleSkillsChange}
             />
           </>
         );
@@ -325,7 +256,7 @@ const page = () => {
           exit={{ x: -100, opacity: 0 }}
           className="flex flex-col mx-12 max-w-2xl sm:mx-auto items-center justify-center mt-28"
         >
-          <div className="spacce-y-12">{handleField()}</div>
+          <div className="space-y-12">{handleField()}</div>
           <div className="flex mt-20 justify-between w-full">
             <button
               disabled={stepCount === 0}
