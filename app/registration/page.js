@@ -26,7 +26,7 @@ const page = () => {
     phNumber: "",
     country: "",
     description: "",
-    dob: "",
+    DOB: "",
     skills: ["Web Developement", "Designing"],
   });
 
@@ -74,6 +74,13 @@ const page = () => {
       setStepCount((prev) => Math.min(prev + 1, totalSteps - 1));
     }
   };
+
+  const handleDate = (event) => {
+    let value = event.target.value;
+    value = new Date(`${value}`)
+    setFormData({...formData, DOB:value });
+    return value;
+  }
 
   const handleSkillsChange = (event, value) => {
     setFormData({ ...formData, skills: value });
@@ -198,13 +205,13 @@ const page = () => {
             </label>
             <input
               required
-              onChange={handleChange}
+              onChange={(e)=>handleDate(e)}
               // min="18"
               // max="90"
-              id="dob"
+              id="DOB"
               type="date"
-              name="dob"
-              value={formData.dob}
+              name="DOB"
+              value={formData.DOB.toLocaleString()}
               placeholder="05/9/2003"
               className="border p-4 w-[300px] bg-transparent rounded-md block focus:outline outline-purple-400"
             />
@@ -272,7 +279,6 @@ const page = () => {
     }
   };
 
-  console.log(stepCount, completedSteps);
 
  if (stepCount === 6) {
    const response = registerUser(formData);
