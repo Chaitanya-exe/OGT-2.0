@@ -18,8 +18,6 @@ const ClientLayout = ({ children }) => {
       console.log(user);
       if (user?.role === "NULL") {
         router.push("/registration");
-      } else {
-        router.push("/");
       }
     }
   }, [session, router, pathname]);
