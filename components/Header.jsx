@@ -6,10 +6,8 @@ import Button from "./ui/Button";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 
-import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
@@ -108,7 +106,7 @@ const Header = () => {
                     </div>
                   </MenuItem>
 
-                </Link>
+                  </Link>
                   <Link href={"/developer/profile"}>
                     <MenuItem
                       onClick={handleClose}
