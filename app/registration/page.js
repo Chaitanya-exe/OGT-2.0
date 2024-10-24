@@ -206,7 +206,7 @@ const page = () => {
             <label className="text-[60px] font-semibold">Desciption : </label>
             <textarea
               name="description"
-              values={formData.description}
+              value={formData.description}
               onChange={handleChange}
               className="block bg-transparent border rounded-md p-3 text focus:outline focus:outline-purple-400 w-[700px] h-[200px]"
             />

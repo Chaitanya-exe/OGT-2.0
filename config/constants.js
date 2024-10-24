@@ -2,6 +2,15 @@ import { Autocomplete, Chip, TextField } from "@mui/material";
 import { IoClose } from "react-icons/io5";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
+import { TiUser } from "react-icons/ti";
+import { MdBookmarkAdded } from "react-icons/md";
+import { RiFileEditFill } from "react-icons/ri";
+import { MdWork } from "react-icons/md";
+import { MdReviews } from "react-icons/md";
+
+
+
+
 
 
 export const services = [
@@ -373,7 +382,7 @@ export const SkillsInput =({value,onChangeFunction}) => {
       defaultValue={[tabs[3]]}
       value={value}
       onChange={onChangeFunction}
-      className="border-b text-white w-full border-white/70 focus:outline-none min-w-2xl"
+      className="border-b text-white w-full border-white/10 focus:outline-none min-w-2xl"
       renderInput={(params) => (
         <TextField
           {...params}
@@ -387,14 +396,14 @@ export const SkillsInput =({value,onChangeFunction}) => {
           InputProps={{
             ...params.InputProps,
             className:
-              "text-white bg-bgColor min-w-2xl flex flex-wrap gap-x-3 gap-y-2",
+              "text-white bg-bgColor/0 px-3 py-2 min-w-2xl flex flex-wrap gap-x-2 gap-y-2",
           }}
         />
       )}
       renderOption={(props, option) => (
         <li
           {...props}
-          className="text-white px-2  py-3 min-w-2xl bg-bgColor/90 hover:bg-bgColor/70" // Custom text and background color for each option
+          className="text-white  p-3 min-w-2xl bg-bgColor/90 hover:bg-bgColor/70" // Custom text and background color for each option
         >
           {option}
         </li>
@@ -406,8 +415,8 @@ export const SkillsInput =({value,onChangeFunction}) => {
             variant="outlined"
             label={option}
             {...getTagProps({ index })}
-            className="bg-l2 m-2 text-capitalize text-white"
-            deleteIcon={<IoClose className="text-white" />} // Custom cross icon color
+            className="bg-l2 m-2.5 text-capitalize text-white"
+            deleteIcon={<IoClose className="text-white" />}
           />
         ))
       }
@@ -426,7 +435,7 @@ export const DatePickerInput = ({value,onChangeFunction}) =>{
       onChange={(date) => onChangeFunction(date)}
       dateFormat="dd-MM-yyyy"
       placeholderText="Select your date of birth"
-      className="border p-4 w-[340px] text-white bg-transparent rounded-md block focus:outline outline-purple-400"
+      className="border border-white/10 p-4 w-[340px] text-white bg-transparent rounded-md block focus:outline outline-purple-400"
       showYearDropdown
       scrollableYearDropdown
       yearDropdownItemNumber={50}
@@ -441,12 +450,12 @@ export const CountryInput = ({value,onChangeFunction,countryList}) =>{
       value={value}
       name="country"
       onChange={onChangeFunction}
-      className=" bg-transparent border border-white/10   p-3 rounded-md focus:outline outline-purple-400"
+      className=" bg-transparent border border-white/10 text-BO   p-3 rounded-md focus:outline outline-purple-400"
     >
       {countryList?.map((country) => (
         <option
           value={country}
-          className="bg-white/5 text-bgColor hover:white/10"
+          className="bg-B bg-transparent py-2 text-bgColor hover:white/10"
         >
           {country}
         </option>
@@ -454,3 +463,49 @@ export const CountryInput = ({value,onChangeFunction,countryList}) =>{
     </select>
   );
 }
+
+
+export const developerDashBoard = [
+  {
+    id: 1,
+    name: "My Profile",
+    link: "myProfile",
+    icon: <TiUser className="size-6" />,
+  },
+  {
+    id: 2,
+    name: "saved Projects",
+    link: "savedProjects",
+    icon: <MdBookmarkAdded className="size-5" />,
+  },
+  {
+    id: 3,
+    name: "applied projects",
+    link: "appliedProjects",
+    icon: <RiFileEditFill className="size-5" />,
+  },
+  {
+    id: 4,
+    name: "working projects",
+    link: "workingProjects",
+    icon: <MdWork className="size-5" />,
+  },
+  {
+    id: 5,
+    name: "rating & reviews",
+    link: "reviews",
+    icon: <MdReviews className="size-5" />,
+  },
+  {
+    id: 6,
+    name: "payments",
+    link: "payments",
+    svg: "/Wallet.svg",
+  },
+  {
+    id: 1,
+    name: "help & support",
+    link: "help",
+    svg : "/support.svg"
+  },
+];
