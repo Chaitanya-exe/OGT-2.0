@@ -15,11 +15,8 @@ const ClientLayout = ({ children }) => {
   useEffect(() => {
     if (session) {
       const user = session.user;
-      console.log(user);
       if (user?.role === "NULL") {
         router.push("/registration");
-      } else {
-        router.push("/");
       }
     }
   }, [session, router, pathname]);
