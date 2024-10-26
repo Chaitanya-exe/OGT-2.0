@@ -71,7 +71,7 @@ export const authOptions = {
                 });
                 
                 if(dbRes){
-                    token.user = dbRes;
+                    token.user = {...dbRes};
                 }
             }
             return token

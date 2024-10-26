@@ -28,6 +28,7 @@ model Users {
   phNumber    String   @default("")
 
   projects    Project[]
+  blogs       Blogs[]
   reviews     Reviews[]
   applicaions Applications[]
 }
@@ -36,7 +37,7 @@ model Applications {
   id          String   @id @default(uuid())
   projectId   String
   project     Project  @relation(fields: [projectId], references: [id])
-  applicantId String
+  applicantId String   @unique
   applicant   Users    @relation(fields: [applicantId], references: [id])
   answers     String[] @default([""])
 }
@@ -72,6 +73,17 @@ model Reviews {
   workerId    String
   rating      Float
   description String
+}
+
+model Blogs {
+  id        String   @id @default(uuid())
+  creatorId String
+  creator   Users    @relation(fields: [creatorId], references: [id])
+  title     String
+  thumbnail String?  @default("")
+  body      String   @default("")
+  tags      String[] @default([])
+  createdAt DateTime @default(now())
 }
 
 enum Role {
