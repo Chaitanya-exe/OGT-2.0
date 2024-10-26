@@ -18,7 +18,6 @@ import Link from "next/link";
 
 const Header = () => {
   const { data: session } = useSession();
-  console.log(session);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {

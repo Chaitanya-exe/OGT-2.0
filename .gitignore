@@ -40,3 +40,4 @@ script
 prisma/
 errors.txt
 data.json
+app/api/upload
