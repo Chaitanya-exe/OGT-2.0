@@ -1,9 +1,13 @@
+"use client";
+
 import Projects from '@/components/search/Projects'
 import Searchcategory from '@/components/search/SearchBar'
 import StipendFilter from '@/components/search/StipendFilter'
-import React from 'react'
+import React, { useState } from 'react'
 
 const DeveloperPage = () => {
+    // const [projects, setProjects] = useState([]);
+
   return (
     <>
 

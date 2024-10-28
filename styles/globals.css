@@ -98,7 +98,6 @@ width: 197.76px;
 height: 409.59px;
 left: -192px;
 top: -202px;
-z-index: -1;
 
 background: linear-gradient(180deg, rgba(175, 82, 222, 0.49) 20.13%, rgba(51, 51, 108, 0.49) 92.69%);
 filter: blur(180px);
@@ -275,4 +274,3 @@ backdrop-filter: blur(78px);
 
 
 }
-

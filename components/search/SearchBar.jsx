@@ -62,8 +62,8 @@ const Searchcategory = ({className}) => {
   return (
     <div className="search-category">
       <Combobox value={category} onChange={setcategory}>
-        <div className="relative w-full">
-          <ComboboxButton className="absolute top-[14px]">
+        <div className="relative w-full backdrop-blur-xl">
+          <ComboboxButton className="absolute top-[14px] z-30">
             <Image
               src={"/searchvector.png"}
               width={20}

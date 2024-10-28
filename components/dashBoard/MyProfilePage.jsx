@@ -75,7 +75,7 @@ const MyProfile = () => {
       {showUpdateForm && (
         <ProfileUpdate setShowUpdateForm={setShowUpdateForm} />
       )}
-      <div className="border shadow flex flex-col gap-6 border-white/10 rounded-[4px] py-8 my-8 px-12 max-w-[1200px] mx-auto ">
+      <div className="border shadow  flex flex-col gap-6 bg-bgColor border-white/10 rounded-[4px] py-8 my-8 px-12 max-w-[1200px] mx-auto ">
         <div className="flex gap-4 items-center w-full">
           <span className="border bg-l2/15 border-l2/20 rounded-full p-1  ">
             <Image

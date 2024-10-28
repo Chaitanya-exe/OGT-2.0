@@ -4,11 +4,13 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Button from "../ui/Button";
 import ProjectDetail from "./ProjectDetail";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import axios from "axios"
 import { Alert, Snackbar } from "@mui/material";
 
-const ProjectCard = ({ project, index, setDEtailModal }) => {
+export const ProjectCard = ({ project, index, setDEtailModal ,className}) => {
+  const pathname = usePathname();
+
    const [open, setOpen] = React.useState(false);
 
    const handleClick = () => {
@@ -26,7 +28,7 @@ const ProjectCard = ({ project, index, setDEtailModal }) => {
   return (
     <div
       key={index}
-      className="projectCard border-white/10 border rounded lg:w-[1110px]  mx-auto p-4 flex flex-col gap-4"
+      className={` ${className} mx-auto p-4 flex flex-col gap-4`}
     >
       <div className="flex gap-3 items-center ">
         <Image
@@ -59,14 +61,18 @@ const ProjectCard = ({ project, index, setDEtailModal }) => {
       <div>
         Skills - <span className=" text-sm ">{project.skills.join(" , ")}</span>
       </div>
-      <ul className="bg-l1 w-fit list-disc list-inside px-2 rounded-full text-sm">
+      <ul className="bg-l1 w-fit list-disc list-inside capitalize px-2 rounded-full text-sm">
         <li>{project.status}</li>
       </ul>
       <span className="text-sm text-BO">{project.applicants}+ applicants</span>
+{
+  !pathname === "/developer/profile" && (
 
       <button onClick={handleClick}>
         <Button text="Apply" type="primary" className="w-[140px] float-right" />
       </button>
+  )
+}
         {/* <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
           <Alert
             onClose={handleClose}
@@ -119,6 +125,7 @@ const Projects = () => {
             project={project}
             index={index}
             setDEtailModal={setDEtailModal}
+            className="projectCard border-white/10 border rounded lg:w-[1110px]"
           />
         </>
       ))}

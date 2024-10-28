@@ -9,15 +9,16 @@ export const GET = async (req) => {
     const url = new URL(req.url, baseURL);
     const searchParams = url.searchParams;
 
-    const query = {};
+    // const query = {};
     const category = searchParams.get("category");
     const stipendRange = searchParams.get("stipend");
 
-    if (category) {
-      query.category = category.toLowerCase();
-    }
+    // if (category) {
+    //   query.category = category.toLowerCase();
+    // }
 
-    let filteredProjects = await userClient.project.findMany();
+    // let filteredProjects = await userClient.project.findMany();
+    let filteredProjects = projectsData
     if (category) {
       filteredProjects = filteredProjects.filter(
         (project) => project.role.toLowerCase() === category.toLowerCase()
