@@ -58,5 +58,7 @@ export const GET = async (req) => {
     return new Response("Failed to fetch projects", {
       status: 500,
     });
+  } finally{
+    await userClient.$disconnect();
   }
 };
