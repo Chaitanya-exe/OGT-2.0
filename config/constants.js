@@ -509,3 +509,41 @@ export const developerDashBoard = [
     svg : "/support.svg"
   },
 ];
+
+
+
+export const newProjectSteps = [
+  {
+    label: "Project overview",
+    description: `For each ad campaign that you create, you can control how much
+              you're willing to spend on clicks and conversions, which networks
+              and geographical locations you want your ads to show on, and more.`,
+  },
+  {
+    label: "Timiline & milestones",
+    description: "Outline the timeline to help us deliver on time .Set a stipend to keep everyone motivated.",
+  },
+  {
+    label: "requirements & questions",
+    description: `Try out different ad text to see what brings in the most customers,
+              and learn how to enhance your ads using features like ad extensions.
+              If you run into any problems with your ads, find out how to tell if
+              they're running and how to resolve approval issues.`,
+  },
+];
+export const newProjectPrompts = [
+  {
+    label: "Let’s Get Started! 🚀",
+    description: `Begin by sharing a little about this project so we can help you bring it to life`,
+  },
+  {
+    label: "Set Your Milestones 🗓️",
+    description: "Outline the timeline to help us deliver on time",
+    point: "Set a stipend to keep everyone motivated.",
+  },
+  {
+    label: "Almost There! 🏁",
+    description: `Assign the right people for the right tasks.`,
+  },
+];
+

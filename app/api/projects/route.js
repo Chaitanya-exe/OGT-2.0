@@ -17,8 +17,7 @@ export const GET = async (req) => {
     //   query.category = category.toLowerCase();
     // }
 
-    // let filteredProjects = await userClient.project.findMany();
-    let filteredProjects = projectsData
+    let filteredProjects = await userClient.project.findMany();
     if (category) {
       filteredProjects = filteredProjects.filter(
         (project) => project.role.toLowerCase() === category.toLowerCase()
