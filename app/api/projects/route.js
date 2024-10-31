@@ -8,16 +8,15 @@ export const GET = async (req) => {
     const baseURL = "http://localhost:3000";
     const url = new URL(req.url, baseURL);
     const searchParams = url.searchParams;
+    const pageSize = 10;
 
-    // const query = {};
     const category = searchParams.get("category");
     const stipendRange = searchParams.get("stipend");
 
-    // if (category) {
-    //   query.category = category.toLowerCase();
-    // }
-
-    let filteredProjects = await userClient.project.findMany();
+    let filteredProjects = await userClient.project.findMany({
+      skip: (page - 1) - pageSize,
+      take: pageSize
+    })
     if (category) {
       filteredProjects = filteredProjects.filter(
         (project) => project.role.toLowerCase() === category.toLowerCase()
@@ -45,17 +44,19 @@ export const GET = async (req) => {
       });
     } 
 
-    return new Response(JSON.stringify(filteredProjects), {
+    return Response.json({filteredProjects}, {
       status: 200,
       headers: {
         "Content-Type": "application/json",
       },
     });
   } catch (error) {
-    console.error("Error fetching products:", error);
+    console.log("Error fetching products:", error);
     createError(error);
-    return new Response("Failed to fetch projects", {
+    return Response.json({error: error.message}, {
       status: 500,
     });
+  } finally{
+    await userClient.$disconnect();
   }
 };
