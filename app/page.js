@@ -5,16 +5,20 @@ import Sphere from "@/components/Sphere";
 import Index from "@/components/Steps/Index";
 import Testimonials from "@/components/Steps/Testimonials";
 import EgVideo from "@/components/EgVideo";
+import Image from "next/image";
+
 import {
   fadeAnimation,
   headContentAnimation,
   headTextAnimation,
 } from "@/config/motion";
 
+
 export default function Home() {
   return (
     <main className="min-h-screen *:p-10  ">
-      <motion.div className="max-w-5xl mt-16 mx-auto text-center flex flex-col gap-5 items-center">
+      <motion.div className="max-w-5xl relative mt-16 mx-auto text-center flex flex-col gap-5 items-center">
+      <Image src="/Group.png" width={420} height={300} alt="svg" className="absolute -top-14 opacity-80 right-0 -z-10" />
         <motion.h2 {...headTextAnimation} className="">
           <span className="heroOgt text-white">ogt</span>
           <span className="heroTxt">

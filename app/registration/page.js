@@ -273,6 +273,8 @@ const page = () => {
             <DatePickerInput
               value={formData.DOB}
               onChangeFunction={handleDateChange}
+              placeholder="Select your date of birth"
+              className="border border-white/10 p-4 w-[340px] text-white bg-transparent rounded-md block focus:outline outline-purple-400"
             />
           </>
         );

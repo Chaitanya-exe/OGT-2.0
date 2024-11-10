@@ -1,3 +1,4 @@
+"use client"
 import { CldUploadWidget } from 'next-cloudinary';
 import React from 'react'
 
@@ -10,7 +11,7 @@ const CldyUploadWidget = ({className,text}) => {
     onUpload(result.info.secure_url);
   };
   return (
-    <main className="flex flex-col items-center justify-between">
+    <main className="flex flex-col items-start justify-start">
       <CldUploadWidget uploadPreset="ogtUploadPreset" onSuccess={handleUpload}>
         {({ open }) => {
           return <button onClick={() => open()} className={className}>{text}</button>;

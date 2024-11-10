@@ -11,6 +11,8 @@ import Typography from "@mui/material/Typography";
 import { newProjectSteps } from "@/config/constants";
 import { MdAccountBalanceWallet } from "react-icons/md";
 import { BiCheckCircle, BiPhone } from "react-icons/bi";
+import {motion} from "framer-motion"
+import { fadeAnimation } from "@/config/motion";
 
 // Define custom icon styles based on step state
 function CustomStepIcon({ active, completed, icon }) {
@@ -37,7 +39,7 @@ function CustomStepIcon({ active, completed, icon }) {
 
 export default function VerticalLinearStepperEg({ activeStep }) {
   return (
-    <Box className="max-w-[400px] my-8">
+    <motion.Box {...fadeAnimation} className="max-w-[400px] my- sticky top-20 left-0 ">
       <Stepper activeStep={activeStep} orientation="vertical">
         {newProjectSteps.map((step, index) => (
           <Step key={step.label}>
@@ -86,6 +88,6 @@ export default function VerticalLinearStepperEg({ activeStep }) {
           </Typography>
         </Paper>
       )}
-    </Box>
+    </motion.Box>
   );
 }

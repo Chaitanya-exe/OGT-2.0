@@ -427,15 +427,15 @@ export const SkillsInput =({value,onChangeFunction}) => {
   );
 }
 
-export const DatePickerInput = ({value,onChangeFunction}) =>{
+export const DatePickerInput = ({value,onChangeFunction,placeholder,className}) =>{
   return (
     <DatePicker
       name="DOB"
       selected={value ? new Date(value) : null}
       onChange={(date) => onChangeFunction(date)}
       dateFormat="dd-MM-yyyy"
-      placeholderText="Select your date of birth"
-      className="border border-white/10 p-4 w-[340px] text-white bg-transparent rounded-md block focus:outline outline-purple-400"
+      placeholderText={placeholder}
+      className={className}
       showYearDropdown
       scrollableYearDropdown
       yearDropdownItemNumber={50}

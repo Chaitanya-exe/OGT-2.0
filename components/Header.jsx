@@ -15,10 +15,15 @@ import { IoMdLogOut } from "react-icons/io";
 
 import { FaUser } from "react-icons/fa6";
 import Link from "next/link";
+import NotificationModal from "./NotificationModal";
+
+ 
 
 const Header = () => {
   const { data: session } = useSession();
   const [anchorEl, setAnchorEl] = useState(null);
+ const [showNotifications, setShowNotifications] = useState(false);
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -31,34 +36,39 @@ const Header = () => {
     <nav className="pb-[1px] px-2 relative bg-gradient-to-r from-bgColor via-pink-400 to-bgColor">
       <div className="bg-bgColor py-1 ">
         <div className="topOvalGrad" />
-        <div className="flex w-full justify-evenly mx-auto items-center gap-20 px-14 pb-4 pt-2 ">
-          <div className="flex gap-10 w-1/3">
+        <div className="flex w-full justify-evenly mx-auto items-center gap-24 px-10  ">
+          <div className="flex gap-10 *:py-3 ">
             <a>About us</a>
 
             <a>
               Resouces
-              <IoIosArrowDown className="inline-flex mx-2" />
+              <IoIosArrowDown className="inline-flex mx-1" />
             </a>
-
             <a>
-              Notifications
-              <span className="badge ">0</span>
-              <IoIosArrowDown className="inline-flex mx-2" />
+              Contact us
+              <IoIosArrowDown className="inline-flex mx-1" />
             </a>
           </div>
           <p className="text-center ogt-logo  flex ">
             <a>ogt</a>
           </p>
-          <div className="flex gap-10  items-center">
-            <a>
-              Contact us
-              <IoIosArrowDown className="inline-flex mx-2" />
-            </a>
-
+          <div className="flex gap-10 *:py-3  items-center">
             <a>
               Help
-              <IoIosArrowDown className="inline-flex mx-2" />
+              <IoIosArrowDown className="inline-flex mx-1" />
             </a>
+
+            <div
+              className="relative"
+              onMouseEnter={() => setShowNotifications(true)}
+              onMouseLeave={() => setShowNotifications(false)}
+            >
+              Notifications
+              <span className="badge ml-1 ">0</span>
+              <IoIosArrowDown className="inline-flex mx-1" />
+              {showNotifications && <NotificationModal />}
+            </div>
+
             {session?.user ? (
               <>
                 <Tooltip title="Account settings">
@@ -86,27 +96,31 @@ const Header = () => {
                   transformOrigin={{ horizontal: "right", vertical: "top" }}
                   anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
                 >
-
-                <Link href={session?.user.role === "WORKER" ? "/developer" : "/employer" }>
-                  <MenuItem
-                    onClick={handleClose}
-                    className="flex hover:bg-bgColor/15 gap-2 items-center py-3 "
+                  <Link
+                    href={
+                      session?.user.role === "WORKER"
+                        ? "/developer"
+                        : "/employer"
+                    }
                   >
-                    <span className="secondary_grad p-1">
-                      <Image
-                        src={session.user?.img}
-                        width={32}
-                        height={32}
-                        alt={session.user.name.charAt(0).toUpperCase()}
-                        className="rounded-full "
-                      />
-                    </span>
-                    <div>
-                      <p>{session.user.name}</p>
-                      <p className="text-sm  text-BO">Role</p>
-                    </div>
-                  </MenuItem>
-
+                    <MenuItem
+                      onClick={handleClose}
+                      className="flex hover:bg-bgColor/15 gap-2 items-center py-3 "
+                    >
+                      <span className="secondary_grad p-1">
+                        <Image
+                          src={session.user?.img}
+                          width={32}
+                          height={32}
+                          alt={session.user.name.charAt(0).toUpperCase()}
+                          className="rounded-full "
+                        />
+                      </span>
+                      <div>
+                        <p>{session.user.name}</p>
+                        <p className="text-sm  text-BO">Role</p>
+                      </div>
+                    </MenuItem>
                   </Link>
                   <Link href={"/developer/profile"}>
                     <MenuItem
@@ -131,9 +145,12 @@ const Header = () => {
             ) : (
               <div className="flex gap-2 items-center">
                 <button onClick={() => signIn()}>
-                  <Button type="primary" text="SignIn/SignUp" className=" w-[175px]" />
+                  <Button
+                    type="primary"
+                    text="SignIn/SignUp"
+                    className=" w-[175px]"
+                  />
                 </button>
-                
               </div>
             )}
           </div>
