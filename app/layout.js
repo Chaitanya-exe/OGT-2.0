@@ -4,7 +4,7 @@ import ClientLayout from "./ClientLayout";
 import "../styles/globals.css"
 
 export const metadata = {
-  title: "Get work done in your time",
+  title: "",
   description: "Get&Post Projects.",
 };
 

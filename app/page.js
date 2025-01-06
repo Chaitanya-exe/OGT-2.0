@@ -23,28 +23,24 @@ export default function Home() {
           <span className="heroOgt text-white">OGT</span>
           <span className="heroTxt">
             {" "}
-            : The Global marketplace for Remote Services.
+            : Expert Remote Services for Your Business
           </span>
         </motion.h2>
         <motion.h4
           {...headContentAnimation}
-          className="heroDesc text-2xl leading-[26px] px-20 tracking-wide"
+          className=" text-2xl leading-[26px] px-20 tracking-wide text-left"
         >
-          Connect with inspiring projects from around the world and collaborate
-          with businesses that value your unique skills. Embrace the freedom to
-          choose the work you love, and build a flourishing career without
-          borders. For the businesses and startups it's great market place for
-          the services which will make your business easier for you.
+          At OGT, we deliver reliable remote services tailored to meet your business needs. From streamlining operations to providing expert solutions, we help you save time and focus on growth. With a commitment to quality and client satisfaction, OGT ensures every project is handled with professionalism and precision. Partner with us to simplify your processes and achieve your goals effortlessly.
         </motion.h4>
         <motion.div
           {...fadeAnimation}
           className="flex w-fit bg-e1/10 
  border border-e1/20 rounded-full p-1"
         >
-          <button text="Developer" className="l1_button bg-l1 ">
+          {/* <button text="Developer" className="l1_button bg-l1 ">
             Developer
           </button>
-          <button className="l1_button">Employer</button>
+          <button className="l1_button">Employer</button> */}
         </motion.div>
       </motion.div>
       <div>
