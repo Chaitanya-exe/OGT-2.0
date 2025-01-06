@@ -7,7 +7,7 @@ import { tabs } from "@/config/constants";
 import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 
-const page = () => {
+const Blogs = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const currentCategory = searchParams.get("category");
@@ -58,4 +58,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Blogs;

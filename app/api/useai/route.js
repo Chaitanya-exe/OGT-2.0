@@ -1,9 +1,9 @@
-import { createError, useAI } from "@/utils";
+import { createError, useai } from "@/utils";
 
 async function handler(req){
     try {
         const {prompt} = await req.json();
-        const result = await useAI(prompt);
+        const result = await useai(prompt);
         return Response.json({response: result},{status:200});
     } catch (error) {
         console.log(error);

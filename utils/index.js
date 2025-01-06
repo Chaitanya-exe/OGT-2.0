@@ -12,7 +12,7 @@ export async function createError(error, fileName = __filename) {
     writeStream.end();
 }
 
-export async function useAI(prompt) {
+export async function useai(prompt) {
     try {
         const genAI = new GoogleGenerativeAI(process.env.API_KEY);
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });

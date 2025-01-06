@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 
-const notFound = () => {
+const NotFound = () => {
   const router = useRouter();
   return (
     <div className="flex gap-3 flex-col items-center justify-center min-h-[500px] text-center">
@@ -23,4 +23,4 @@ const notFound = () => {
   );
 };
 
-export default notFound;
+export default NotFound;
