@@ -49,9 +49,9 @@ const Header = () => {
               <IoIosArrowDown className="inline-flex mx-1" />
             </a>
           </div>
-          <p className="text-center ogt-logo  flex ">
-            <a>ogt</a>
-          </p>
+          {/* <p className="text-center ogt-logo  flex ">
+            <a>OGT</a>
+          </p> */}
           <div className="flex gap-10 *:py-3  items-center">
             <a>
               Help

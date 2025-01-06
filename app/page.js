@@ -20,15 +20,15 @@ export default function Home() {
       <motion.div className="max-w-5xl relative mt-16 mx-auto text-center flex flex-col gap-5 items-center">
       <Image src="/Group.png" width={420} height={300} alt="svg" className="absolute -top-14 opacity-80 right-0 -z-10" />
         <motion.h2 {...headTextAnimation} className="">
-          <span className="heroOgt text-white">ogt</span>
+          <span className="heroOgt text-white">OGT</span>
           <span className="heroTxt">
             {" "}
-            : The Global marketplace for Top Talent.
+            : The Global marketplace for Remote Services.
           </span>
         </motion.h2>
         <motion.h4
           {...headContentAnimation}
-          className="heroDesc leading-[26px] px-20 tracking-wide"
+          className="heroDesc text-2xl leading-[26px] px-20 tracking-wide"
         >
           Connect with inspiring projects from around the world and collaborate
           with businesses that value your unique skills. Embrace the freedom to
