@@ -15,7 +15,7 @@ import Loader from "@/components/Loader";
 import {motion , AnimatePresence} from "framer-motion"
 import { fadeAnimation, headContentAnimation, headTextAnimation } from "@/config/motion";
 
-const page = () => {
+const CreateProject = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [openInputField, setOpenInputField] = useState({
     forSkills: true,
@@ -421,4 +421,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default CreateProject;

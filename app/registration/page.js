@@ -26,7 +26,7 @@ const registerUser = async (form) => {
     console.log(error);
   }
 };
-const page = () => {
+const Registration = () => {
   const { data: session } = useSession();
   console.log(session);
   const [stepCount, setStepCount] = useState(0);
@@ -343,4 +343,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Registration;

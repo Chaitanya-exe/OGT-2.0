@@ -20,31 +20,27 @@ export default function Home() {
       <motion.div className="max-w-5xl relative mt-16 mx-auto text-center flex flex-col gap-5 items-center">
       <Image src="/Group.png" width={420} height={300} alt="svg" className="absolute -top-14 opacity-80 right-0 -z-10" />
         <motion.h2 {...headTextAnimation} className="">
-          <span className="heroOgt text-white">ogt</span>
+          <span className="heroOgt text-white">OGT</span>
           <span className="heroTxt">
             {" "}
-            : The Global marketplace for Top Talent.
+            : Expert Remote Services for Your Business
           </span>
         </motion.h2>
         <motion.h4
           {...headContentAnimation}
-          className="heroDesc leading-[26px] px-20 tracking-wide"
+          className=" text-2xl leading-[26px] px-20 tracking-wide text-left"
         >
-          Connect with inspiring projects from around the world and collaborate
-          with businesses that value your unique skills. Embrace the freedom to
-          choose the work you love, and build a flourishing career without
-          borders. For the businesses and startups it's great market place for
-          the services which will make your business easier for you.
+          At OGT, we deliver reliable remote services tailored to meet your business needs. From streamlining operations to providing expert solutions, we help you save time and focus on growth. With a commitment to quality and client satisfaction, OGT ensures every project is handled with professionalism and precision. Partner with us to simplify your processes and achieve your goals effortlessly.
         </motion.h4>
         <motion.div
           {...fadeAnimation}
           className="flex w-fit bg-e1/10 
  border border-e1/20 rounded-full p-1"
         >
-          <button text="Developer" className="l1_button bg-l1 ">
+          {/* <button text="Developer" className="l1_button bg-l1 ">
             Developer
           </button>
-          <button className="l1_button">Employer</button>
+          <button className="l1_button">Employer</button> */}
         </motion.div>
       </motion.div>
       <div>
