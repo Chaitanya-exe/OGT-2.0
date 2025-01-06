@@ -100,7 +100,7 @@ const Header = () => {
                     href={
                       session?.user.role === "WORKER"
                         ? "/developer"
-                        : "/employer"
+                        : "/client"
                     }
                   >
                     <MenuItem

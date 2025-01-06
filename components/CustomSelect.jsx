@@ -2,51 +2,45 @@ import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 
 
-function CustomSelect() {
-  const [selectedOption, setSelectedOption] = useState("all");
+function CustomSelect({value,menuItems,setValue}) {
+  const [selectedOption, setSelectedOption] = useState(value);
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleOptionChange = (value) => {
-    setSelectedOption(value);
+  const handleOptionChange = (newValue) => {
+    setSelectedOption(newValue);
+    setValue(newValue);
     setIsOpen(false);
   };
 
   return (
     <div className="relative w-32">
-      {/* Trigger to open/close dropdown */}
       <div
-        className="p-2 border-b border-white/20 flex justify-between items-center cursor-pointer"
+        className="p-2 border-b border-white/20 capitalize flex justify-between items-center cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span>{selectedOption === "all" ? "All" : "Active"}</span>
+        <span>{selectedOption}</span>
         <IoIosArrowDown />
       </div>
 
-      {/* Dropdown options */}
       {isOpen && (
         <div className="absolute left-0 mt-2 w-full  rounded bg-white/15 backdrop-blur-3xl  z-10">
+        {
+          menuItems?.map((item)=>(
+
           <label className="flex items-center p-2 cursor-pointer">
             <input
               type="radio"
               name="filter"
               value="all"
-              checked={selectedOption === "all"}
-              onChange={() => handleOptionChange("all")}
+              checked={selectedOption === item}
+              onChange={() => handleOptionChange(item)}
               className="mr-2 checked:bg-l2"
             />
-            All
+            {item}
           </label>
-          <label className="flex items-center p-2 cursor-pointer">
-            <input
-              type="radio"
-              name="filter"
-              value="active"
-              checked={selectedOption === "active"}
-              onChange={() => handleOptionChange("active")}
-              className="mr-2"
-            />
-            Active
-          </label>
+          ))
+        }
+         
         </div>
       )}
     </div>

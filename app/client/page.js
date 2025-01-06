@@ -15,7 +15,7 @@ const EmployerPage = () => {
   return (
     <div className="flex gap-2 ">
       <TemporaryDrawer active={active} setActive={setActive} />
-      <div className="flex-1 p-12 ">
+      <div className="flex-1 p-12 mx-24 ">
         <div className="w-full bg-l2/5 p-16">Add section</div>
         <div className="flex justify-between">
           {/* <Searchcategory /> */}

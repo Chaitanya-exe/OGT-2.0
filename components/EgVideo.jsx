@@ -1,29 +1,36 @@
 "use client";
 import { services } from "@/config/constants";
 import { animateFromX } from "@/config/motion";
-import { motion} from "framer-motion";
+import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 gsap.registerPlugin(ScrollTrigger);
-
+import { MdOutlinePlayCircle } from "react-icons/md";
+import { FaRegPauseCircle } from "react-icons/fa";
+import { GoUnmute } from "react-icons/go";
+import { VscMute } from "react-icons/vsc";
 
 
 const EgVideo = () => {
-//   const ref = useRef(null);
-//   useEffect(() => {
-//     animateFromX("h1Video", "h2Video", 0.2);
-//   }, []);
+  const leftdiv = useRef(null);
+  const rightdiv = useRef(null);
+  const [isMuted, setIsMuted] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false); // Starts as playing
 
-const leftdiv = useRef(null);
-const rightdiv = useRef(null);
+  const videoRef = useRef(null);
+  
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+  }, []);
 
-
-useEffect(()=>{
+  useEffect(() => {
     const leftContent = leftdiv.current;
     const rightContent = rightdiv.current;
-    const items = leftContent.querySelectorAll('.item');
+    const items = leftContent.querySelectorAll(".item");
     const lastItem = items[items.length - 1];
 
     gsap.to(leftContent, {
@@ -42,10 +49,26 @@ useEffect(()=>{
     });
 
     return () => {
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
-    }
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
 
-},[])
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+  const togglePlayPause = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
 
   return (
     <section className="my-28 *:p-8 min-h-screen relative h-[180vh] bg-Nwhite ">
@@ -86,9 +109,30 @@ useEffect(()=>{
           ))}
         </div>
 
-        <div className="videoRect mt-16 h-[80vh] relative flex items-center justify-center bg-gray-200">
-          <h2>Video</h2>
-          {/* <video src="" autoPlay muted loop ></video> */}
+        <div className="videoRect mt-16 h-[80vh] relative flex items-center justify-center">
+          <video
+            ref={videoRef}
+            src="./ogtvideo.mp4"
+            autoPlay
+            loop
+            muted={isMuted} 
+            className="w-full h-full"
+          ></video>
+          <div className="absolute bottom-4 left-4 flex space-x-2 bg-gray-800 bg-opacity-50 p-2 rounded">
+            <button
+              onClick={togglePlayPause}
+              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            >
+              {isPlaying ? <FaRegPauseCircle/> : <MdOutlinePlayCircle />}
+            </button>
+
+            <button
+              onClick={toggleMute}
+              className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+            >
+              {isMuted ? <VscMute/> : <GoUnmute/>}
+            </button>
+          </div>
         </div>
       </div>
     </section>
