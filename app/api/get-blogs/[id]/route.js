@@ -7,19 +7,7 @@ const userClient = new PrismaClient();
 async function handler(req) {
     try {
         const blogId = fetchId(req.url);
-        if (blogId) {
-            const blog = await userClient.blogs.findUnique({
-                where: {
-                    id: blogId
-                }
-            })
-            if (blog) {
-                return Response.json({ blog }, { status: 200 });
-            }
-            return NextResponse.json({ error: "Blogs not found" }, { status: 404 });
-        } else {
-            throw new Error("Blog Id not present or unable to fetch");
-        }
+        return NextResponse.json({msg:"success"},{status:200});
     } catch (error) {
         console.log(error);
         createError(error);
