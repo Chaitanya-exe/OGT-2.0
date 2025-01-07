@@ -1,5 +1,6 @@
 import { fetchId,createError } from "@/utils";
 import { PrismaClient } from "@prisma/client";
+import { NextResponse } from "next/server";
 
 const userClient = new PrismaClient();
 
@@ -15,6 +16,7 @@ async function handler(req){
             if(blog){
                 return Response.json({blog},{status:200});
             }
+            return NextResponse.json({error:"Blogs not found"},{status:404});
         } else{
             throw new Error("Blog Id not present or unable to fetch");
         }
