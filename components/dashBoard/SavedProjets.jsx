@@ -5,17 +5,17 @@ import { ProjectCard } from "../search/Projects";
 import { projectsData } from "@/config/constants";
 import ProjectDetail from "../search/ProjectDetail";
 import { Tooltip } from "@mui/material";
-import {motion,AnimatePresence} from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion";
 import Searchcategory from "../search/SearchBar";
 import CustomSelect from "../CustomSelect";
 
 const SavedProjets = () => {
   const [openDetailModal, setDEtailModal] = useState(false);
-  const [filterVisible,setFilterVisible] = useState(false);
+  const [filterVisible, setFilterVisible] = useState(false);
 
-  const toggleFilter = ()=>{
-   setFilterVisible(!filterVisible);
-  }
+  const toggleFilter = () => {
+    setFilterVisible(!filterVisible);
+  };
 
   return (
     <div className=" pb-8 overflow-hidden ">
@@ -30,10 +30,9 @@ const SavedProjets = () => {
               className="p-4 h-fit flex items-center relative z-50 "
             >
               <div className="flex gap-16 items-center">
-               
                 <Searchcategory className="p-4  pl-12 bg-transparent rounded border focus:outline-none text-sm border-white/10 mr-3" />
 
-                <CustomSelect />
+                <CustomSelect value={"All"} menuItems={["All", "Active"]} />
               </div>
             </motion.div>
           )}

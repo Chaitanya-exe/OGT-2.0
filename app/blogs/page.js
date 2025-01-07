@@ -35,9 +35,23 @@ const Blogs = () => {
 
       <div className="flex justify-between gap-36 items-end">
         <div className="flex gap-2 cursor-pointer border-white/10 *:p-2 capitalize flex-1 border-b *:text-sm font-medium ">
-          <span onClick={handleViewAllClick} className={`${!currentCategory ? 'font-bold border-b' : 'text-white/70'}`}>View All</span>
+          <span
+            onClick={handleViewAllClick}
+            className={`${
+              !currentCategory ? "font-bold border-b" : "text-white/70"
+            }`}
+          >
+            View All
+          </span>
           {tabs.slice(0, 5).map((tab, i) => (
-            <span onClick={() => handleTabClick(tab)} className={`${currentCategory === tab ? 'font-bold border-b' : 'text-white/70'}`}>{tab}</span>
+            <span
+              onClick={() => handleTabClick(tab)}
+              className={`${
+                currentCategory === tab ? "font-bold border-b" : "text-white/70"
+              }`}
+            >
+              {tab}
+            </span>
           ))}
         </div>
         <Searchcategory
@@ -51,9 +65,8 @@ const Blogs = () => {
           <BlogCard key={index} />
         ))}
       </div>
- 
- <PaginationUI />
-      
+
+      <PaginationUI />
     </section>
   );
 };

@@ -9,8 +9,7 @@ import { RiProgress3Line } from "react-icons/ri";
 import { BiEdit, BiUserCircle } from "react-icons/bi";
 import { RxUpdate } from "react-icons/rx";
 import { MdDelete } from "react-icons/md";
-
-
+import Link from "next/link";
 
 const ProjectsList = () => {
   const [rows, setRows] = useState([]);
@@ -39,14 +38,12 @@ const ProjectsList = () => {
             >
               <td>
                 {row.role}
-                <span></span>
+                <Link href={`/client/project/${row.role}`}>/^</Link>
               </td>
               <td>
-                <span
-                  className={` bg-l2/20 px-2 rounded-full py-0.5 hover:text-white`}
-                >
-                  {row.status}
-                </span>
+                <ul className="bg-l1 w-fit list-disc list-inside capitalize px-2 rounded-full text-sm">
+                  <li>{row.status}</li>
+                </ul>
               </td>
               <td className="px-10">
                 <Badge badgeContent={4} color="secondary" variant="dot">
@@ -59,26 +56,36 @@ const ProjectsList = () => {
                 </Badge>
               </td>
               <td>{row.postedOn}</td>
-              <td>
+              <td className="px-7">
                 <TippyUi
                   istrigger="click"
                   position="right"
                   content={
                     <div className="bg-l2/10 backdrop-blur-xl *:flex *:w-full *:items-center *:gap-1 w-[175px] shadow capitalize border border-white/10 text-start  *:p-2  rounded ">
-                      <span className="hover:text-white hover:bg-l2/30">
+                      <Link
+                        href={`/client/project/${row.role}/applicants`}
+                        className="hover:text-white hover:bg-l2/30"
+                      >
                         <BiUserCircle className="size-6" />{" "}
                         <p>See Applicants</p>
-                      </span>
-                      <span className="hover:text-white  hover:bg-l2/30">
+                      </Link>
+                      <Link
+                        href={`/client/project/${row.role}/progress`}
+                        className="hover:text-white  hover:bg-l2/30"
+                      >
                         <RiProgress3Line className="inline-flex size-6" />{" "}
                         <p>Progress</p>
-                      </span>
+                      </Link>
                       <TippyUi
-                        position="left"
+                        position="left-start"
                         content={
-                          <div className="bg-l2/10 backdrop-blur-xl *:flex  *:items-center *:gap-1 shadow capitalize border border-white/10 text-start  *:p-2  rounded ">
-                            <p className="hover:text-white hover:bg-l2/30">Active</p>
-                            <p className="hover:text-white hover:bg-l2/30">InActive</p>
+                          <div className="bg-l2/10 backdrop-blur-xl min-w-36 ml-6 shadow capitalize border border-white/10 text-start  *:p-2  rounded ">
+                            <p className="hover:text-white hover:bg-l2/30">
+                              Active
+                            </p>
+                            <p className="hover:text-white hover:bg-l2/30">
+                              InActive
+                            </p>
                           </div>
                         }
                       >

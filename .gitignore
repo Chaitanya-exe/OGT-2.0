@@ -42,6 +42,6 @@ errors.txt
 data.json
 app/api/upload
 
-#seo
+#seo 
 public/robots.txt
 public/sitemap.xml

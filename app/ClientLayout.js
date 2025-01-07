@@ -24,7 +24,9 @@ const ClientLayout = ({ children }) => {
  
 
   const excludeHeaderFooter =
-    pathname === "/developer/profile" || pathname === "/registration" || pathname === "/client/project/new";
+    pathname === "/developer/profile" ||
+    pathname === "/registration" ||
+    pathname.startsWith("/client/project/");
 
   return (
     <div className="min-h-screen flex flex-col">
