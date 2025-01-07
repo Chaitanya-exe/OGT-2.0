@@ -41,3 +41,7 @@ prisma/
 errors.txt
 data.json
 app/api/upload
+
+#seo 
+public/robots.txt
+public/sitemap.xml
