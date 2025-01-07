@@ -37,7 +37,7 @@ export default function Tabs({ direction }) {
         onMouseLeave={resumeAnimation}
       >
         {tabs.map((tab, index) => (
-          <Tab tab={tab} />
+          <Tab tab={tab} key={index}/>
         ))}
       </div>
     </div>

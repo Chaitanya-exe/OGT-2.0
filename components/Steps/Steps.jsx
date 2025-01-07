@@ -20,8 +20,8 @@ const Steps = ({ data }) => {
       <div className="bg-Nwhite flex-1 text-bgColor space-y-2">
       <motion.div {...fadeAnimation}>
 
-      {data.content[currentStep].array.map((content)=>(
-        <motion.ul {...fadeAnimation} className="list list-disc">
+      {data.content[currentStep].array.map((content, index)=>(
+        <motion.ul {...fadeAnimation} key={index} className="list list-disc">
             <li>
                 <h2 className="py-2 h3Video">
                     {content.point}
