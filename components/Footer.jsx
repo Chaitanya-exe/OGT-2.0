@@ -17,14 +17,14 @@ const Footer = () => {
           <p>Copyright &copy; 2024 RSMI.Inc</p>
         </div>
       </div>
-      {footerDummyData.map((item,i) => (
-        <div key={i} className="space-y-3">
+      {footerDummyData.map((item, index) => (
+        <div key={index} className="space-y-3">
           <h3 className="text-[18px]">{item.name}</h3>
           <ul className="list-disc list-inside text-BO">
             {item.list.map((listItem, i) => (
               <Link key={i} href={listItem.link}>
 
-              <li key={i} className="hover:text-white cursor-pointer">
+              <li className="hover:text-white cursor-pointer">
                 {listItem.name}
               </li>
               </Link>

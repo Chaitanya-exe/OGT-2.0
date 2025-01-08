@@ -9,7 +9,7 @@ import React, { useState } from "react";
 import { BiSolidWidget, BiUser } from "react-icons/bi";
 import { IoIosArrowBack } from "react-icons/io";
 
-const Project = () => {
+const Page = () => {
   const { id } = useParams();
   const decodedId = id ? decodeURIComponent(id) : "";
   const [breadCumb, setBreadCumb] = useState("OverView");
@@ -171,4 +171,4 @@ const Project = () => {
   );
 };
 
-export default Project;
+export default Page;

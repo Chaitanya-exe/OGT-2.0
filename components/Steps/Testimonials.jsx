@@ -31,19 +31,19 @@ const Testimonials = () => {
       <div className="flex justify-center flex-wrap gap-12 ">
         <div className="flex flex-col mt-28 gap-6">
           {column1.map((item, index) => (
-            <Card key={index} item={item} index={index} />
+            <Card item={item} index={index} key={index}/>
           ))}
         </div>
 
         <div className="flex flex-col mt-20 gap-6">
           {column2.map((item, index) => (
-            <Card key={index} item={item} index={index} />
+            <Card item={item} index={index} key={index}/>
           ))}
         </div>
 
         <div className="flex flex-col mt-14 gap-6">
           {column3.map((item, index) => (
-            <Card key={index} item={item} index={index} />
+            <Card item={item} index={index} key={index}/>
           ))}
         </div>
       </div>

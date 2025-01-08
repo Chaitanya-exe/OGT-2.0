@@ -44,7 +44,8 @@ const Blogs = () => {
             View All
           </span>
           {tabs.slice(0, 5).map((tab, i) => (
-            <span key={i}
+            <span
+              key={i}
               onClick={() => handleTabClick(tab)}
               className={`${
                 currentCategory === tab ? "font-bold border-b" : "text-white/70"

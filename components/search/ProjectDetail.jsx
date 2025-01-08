@@ -22,8 +22,8 @@ const ProjectDetail = ({ project,setDEtailModal }) => {
             </h3>
             <h3 className="font-medium my-2">
               Requirements : <ul className="text-bgColor/80 list-disc list-inside mx-10">
-              {project.requirements.map((point,i)=> (
-                <li key={i}>{point}</li>
+              {project.requirements.map((point, index)=> (
+                <li key={index}>{point}</li>
 
               ))}
               </ul>

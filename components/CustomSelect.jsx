@@ -25,9 +25,9 @@ function CustomSelect({value,menuItems,setValue}) {
       {isOpen && (
         <div className="absolute left-0 mt-2 w-full  rounded bg-white/15 backdrop-blur-3xl  z-10">
         {
-          menuItems?.map((item)=>(
+          menuItems?.map((item, index)=>(
 
-          <label key={item} className="flex items-center p-2 cursor-pointer">
+          <label key={index} className="flex items-center p-2 cursor-pointer">
             <input
               type="radio"
               name="filter"
