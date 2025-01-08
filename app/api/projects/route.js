@@ -1,6 +1,7 @@
 import { projectsData } from "@/config/constants";
 import { PrismaClient } from "@prisma/client";
 import { createError } from "@/utils";
+import { NextResponse } from "next/server";
 const userClient = new PrismaClient();
 
 export const GET = async (req) => {
@@ -44,7 +45,7 @@ export const GET = async (req) => {
       });
     } 
 
-    return Response.json({filteredProjects}, {
+    return NextResponse.json({filteredProjects}, {
       status: 200,
       headers: {
         "Content-Type": "application/json",
@@ -53,7 +54,7 @@ export const GET = async (req) => {
   } catch (error) {
     console.log("Error fetching products:", error);
     createError(error);
-    return Response.json({error: error.message}, {
+    return NextResponse.json({error: error.message}, {
       status: 500,
     });
   } finally{
