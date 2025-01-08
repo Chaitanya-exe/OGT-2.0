@@ -14,12 +14,12 @@ import { VscMute } from "react-icons/vsc";
 
 
 const EgVideo = () => {
-  const leftdiv = useRef(null);
-  const rightdiv = useRef(null);
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false); // Starts as playing
 
   const videoRef = useRef(null);
+    const textRef = useRef();
+
   
   useEffect(() => {
     if (videoRef.current) {
@@ -27,22 +27,37 @@ const EgVideo = () => {
     }
   }, []);
 
-  useEffect(() => {
-    const leftContent = leftdiv.current;
-    const rightContent = rightdiv.current;
-    const items = leftContent.querySelectorAll(".item");
-    const lastItem = items[items.length - 1];
+  useGSAP(() => {
+    gsap.fromTo(
+      textRef.current.children,
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.1,
+        duration: 0.8,
+        scrollTrigger: {
+          trigger: textRef.current,
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        }
+      }
+    );
+  }, []);
 
-    gsap.to(leftContent, {
+  useEffect(() => {
+
+   
+      gsap.to('#leftdiv', {
       yPercent: -100,
       ease: "none",
       scrollTrigger: {
-        trigger: leftContent,
+        trigger: '#leftdiv',
         start: "top top",
-        end: () => `bottom ${window.innerHeight / 2}px`, // Stop when the last div comes to center
+        end: () => `bottom ${window.innerHeight }px`, // Stop when the last div comes to center
 
         scrub: true,
-        pin: rightContent,
+        pin: '#rightdiv',
         pinSpacing: true,
         anticipatePin: 1,
       },
@@ -79,10 +94,12 @@ const EgVideo = () => {
         alt="illustration"
         className="absolute right-0 -top-36"
       />
-      <div className="w-full mt-4 flex gap-16 items-start justify-between ">
+      <div ref={textRef} className="w-full overflow-hidden mt-4 flex gap-16 items-start justify-between ">
+          {'Fostering Growth and Building Dreams & Easily get Projects'.split('').map((letter,i)=>(
         <h1 className="h1Video text-bgColor">
-          Fostering Growth and Building Dreams & Easily get Projects
+{letter}
         </h1>
+          ))}
         <h2 className="h2Video max-w-2xl ">
           O G T transcends simple project matchmaking. We aim to cultivate a
           thriving ecosystem for professional growth. By providing access to
@@ -90,9 +107,9 @@ const EgVideo = () => {
           Developers to build fulfilling careers
         </h2>
       </div>
-      <div ref={rightdiv} className="flex w-full justify-between h-screen">
+      <div id="rightdiv" className="flex w-full justify-between h-screen">
         <div
-          ref={leftdiv}
+          id="leftdiv"
           className="left-content text-wrap pr-16 py-10 mb-16 max-w-2xl flex flex-col gap-12 *:my-12"
         >
           {services.map((service) => (

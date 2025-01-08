@@ -319,7 +319,7 @@ const CreateProject = () => {
               )}
               <div className="flex pt-3 flex-wrap gap-3">
                 {projectData.skills.map((skill, i) => (
-                  <span className="flex items-center capitalize px-2 py-0.5 text-sm bg-fuchsia-800/20 border border-fuchsia-950 hover:bg-fuchsia-800/60 rounded-full ">
+                  <span key={i} className="flex items-center capitalize px-2 py-0.5 text-sm bg-fuchsia-800/20 border border-fuchsia-950 hover:bg-fuchsia-800/60 rounded-full ">
                     {skill}
                     <button onClick={() => removeItem("skills", skill)}>
                       <IoIosClose className="size-5 ml-3 text-white/70 hover:text-white hover:scale-105" />
@@ -361,7 +361,7 @@ const CreateProject = () => {
               )}
               <div className="flex pt-3 flex-col *:border-b *:border-white/10 gap-3">
                 {projectData.questions.map((ques, i) => (
-                  <span className="flex  items-center justify-between capitalize p-3 text-sm bg-fuchsia-800/20 rounded-full ">
+                  <span key={i} className="flex  items-center justify-between capitalize p-3 text-sm bg-fuchsia-800/20 rounded-full ">
                     {ques}
                     <button onClick={() => removeItem("questions", ques)}>
                       <IoIosClose className="size-5 ml-3 text-white/70 hover:text-white hover:scale-105" />

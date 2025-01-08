@@ -20,16 +20,16 @@ const Steps = ({ data }) => {
       <div className="bg-Nwhite flex-1 text-bgColor space-y-2">
       <motion.div {...fadeAnimation}>
 
-      {data.content[currentStep].array.map((content)=>(
         <motion.ul {...fadeAnimation} className="list list-disc">
-            <li>
+      {data.content[currentStep].array.map((content,i)=>(
+            <li key={i}>
                 <h2 className="py-2 h3Video">
                     {content.point}
                 </h2>
                 <p>{content.text}</p>
             </li>
-        </motion.ul>
       ))}
+        </motion.ul>
       </motion.div>
     
 

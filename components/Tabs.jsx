@@ -6,6 +6,7 @@ import { tabs } from "@/config/constants";
 export default function Tabs({ direction }) {
   const tabRef = useRef(null);
   const tween = useRef(null);
+  
   useEffect(() => {
     tween.current = gsap.to(tabRef.current, {
       x: `${direction === "left" ? "-10%" : "10%"}`,

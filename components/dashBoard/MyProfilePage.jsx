@@ -18,7 +18,7 @@ const MyProfile = () => {
     if (session?.user.id) {
       fetchAppliedProjects();
     }
-  }, []);
+  });
 
   const exampleRows = [
     {

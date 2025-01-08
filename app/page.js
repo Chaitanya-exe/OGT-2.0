@@ -13,12 +13,17 @@ import {
   headTextAnimation,
 } from "@/config/motion";
 
-
 export default function Home() {
   return (
     <main className="min-h-screen *:p-10  ">
       <motion.div className="max-w-5xl relative mt-16 mx-auto text-center flex flex-col gap-5 items-center">
-      <Image src="/Group.png" width={420} height={300} alt="svg" className="absolute -top-14 opacity-80 right-0 -z-10" />
+        <Image
+          src="/Group.png"
+          width={420}
+          height={300}
+          alt="svg"
+          className="absolute -top-14 opacity-80 right-0 -z-10"
+        />
         <motion.h2 {...headTextAnimation} className="">
           <span className="heroOgt text-white">OGT</span>
           <span className="heroTxt">
@@ -28,9 +33,14 @@ export default function Home() {
         </motion.h2>
         <motion.h4
           {...headContentAnimation}
-          className=" text-2xl leading-[26px] px-20 tracking-wide text-left"
+          className=" text-2xl text-center leading-[26px] px-20 tracking-wide"
         >
-          At OGT, we deliver reliable remote services tailored to meet your business needs. From streamlining operations to providing expert solutions, we help you save time and focus on growth. With a commitment to quality and client satisfaction, OGT ensures every project is handled with professionalism and precision. Partner with us to simplify your processes and achieve your goals effortlessly.
+          At OGT, we deliver reliable remote services tailored to meet your
+          business needs. From streamlining operations to providing expert
+          solutions, we help you save time and focus on growth. With a
+          commitment to quality and client satisfaction, OGT ensures every
+          project is handled with professionalism and precision. Partner with us
+          to simplify your processes and achieve your goals effortlessly.
         </motion.h4>
         <motion.div
           {...fadeAnimation}
@@ -41,6 +51,7 @@ export default function Home() {
             Developer
           </button>
           <button className="l1_button">Employer</button> */}
+          <button className="l1_button bg-l1">Register</button>
         </motion.div>
       </motion.div>
       <div>

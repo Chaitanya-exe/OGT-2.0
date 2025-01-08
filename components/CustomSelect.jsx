@@ -27,7 +27,7 @@ function CustomSelect({value,menuItems,setValue}) {
         {
           menuItems?.map((item)=>(
 
-          <label className="flex items-center p-2 cursor-pointer">
+          <label key={item} className="flex items-center p-2 cursor-pointer">
             <input
               type="radio"
               name="filter"
