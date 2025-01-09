@@ -1,12 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 import { createError } from "@/utils";
 import { NextResponse } from "next/server";
-
-const userClient = new PrismaClient();
+import userClient from "@/utils/prisma";
 
 async function handler(req){
     try {
-        return NextResponse({msg:"success"});
+        return NextResponse.json({msg:"success"});
     } catch (error) {
         console.log(error);
         createError(error);

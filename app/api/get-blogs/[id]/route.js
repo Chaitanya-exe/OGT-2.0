@@ -1,5 +1,4 @@
 import { fetchId, createError } from "@/utils";
-import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 import userClient from "@/utils/prisma"; 
 

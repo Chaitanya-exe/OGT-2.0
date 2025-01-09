@@ -8,7 +8,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 import { Suspense } from "react";
 
-const Blogs = () => {
+const Page = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const currentCategory = searchParams.get("category");
@@ -75,4 +75,4 @@ const Blogs = () => {
   );
 };
 
-export default Blogs;
+export default Page;

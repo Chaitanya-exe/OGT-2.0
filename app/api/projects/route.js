@@ -4,11 +4,11 @@ import { createError } from "@/utils";
 import { NextResponse } from "next/server";
 const userClient = new PrismaClient();
 
+export const dynamic = "force-dynamic"
+
 export const GET = async (req) => {
   try {
-    const baseURL = "http://localhost:3000";
-    const url = new URL(req.url, baseURL);
-    const searchParams = url.searchParams;
+    const {searchParams} = req.nextUrl;
     const pageSize = 10;
 
     const category = searchParams.get("category");
