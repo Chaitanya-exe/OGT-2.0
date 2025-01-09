@@ -2,6 +2,8 @@
 import { services } from "@/config/constants";
 import { animateFromX } from "@/config/motion";
 import { motion } from "framer-motion";
+import { useGSAP } from "@gsap/react";
+
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
@@ -18,7 +20,8 @@ const EgVideo = () => {
   const [isPlaying, setIsPlaying] = useState(false); // Starts as playing
 
   const videoRef = useRef(null);
-    const textRef = useRef();
+  const leftdiv = useRef(null);
+  const rightdiv = useRef(null);
 
   
   useEffect(() => {
@@ -27,46 +30,29 @@ const EgVideo = () => {
     }
   }, []);
 
-  useGSAP(() => {
-    gsap.fromTo(
-      textRef.current.children,
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        stagger: 0.1,
-        duration: 0.8,
+    useEffect(() => {
+      const leftContent = leftdiv.current;
+      const rightContent = rightdiv.current;
+      
+      gsap.to(leftContent, {
+        yPercent: -100,
+        ease: "none",
         scrollTrigger: {
-          trigger: textRef.current,
-          start: 'top 80%',
-          toggleActions: 'play none none none'
-        }
-      }
-    );
-  }, []);
+          trigger: leftContent,
+          start: "top top",
+          end: () => `bottom ${window.innerHeight / 2}px`, // Stop when the last div comes to center
 
-  useEffect(() => {
+          scrub: true,
+          pin: rightContent,
+          pinSpacing: true,
+          anticipatePin: 1,
+        },
+      });
 
-   
-      gsap.to('#leftdiv', {
-      yPercent: -100,
-      ease: "none",
-      scrollTrigger: {
-        trigger: '#leftdiv',
-        start: "top top",
-        end: () => `bottom ${window.innerHeight }px`, // Stop when the last div comes to center
-
-        scrub: true,
-        pin: '#rightdiv',
-        pinSpacing: true,
-        anticipatePin: 1,
-      },
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
+      return () => {
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      };
+    }, []);
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -94,12 +80,10 @@ const EgVideo = () => {
         alt="illustration"
         className="absolute right-0 -top-36"
       />
-      <div ref={textRef} className="w-full overflow-hidden mt-4 flex gap-16 items-start justify-between ">
-          {'Fostering Growth and Building Dreams & Easily get Projects'.split('').map((letter,i)=>(
+      <div className="w-full overflow-hidden mt-4 flex gap-16 items-start justify-between ">
         <h1 className="h1Video text-bgColor">
-{letter}
+        Fostering Growth and Building Dreams & Easily get Projects
         </h1>
-          ))}
         <h2 className="h2Video max-w-2xl ">
           O G T transcends simple project matchmaking. We aim to cultivate a
           thriving ecosystem for professional growth. By providing access to
@@ -107,9 +91,9 @@ const EgVideo = () => {
           Developers to build fulfilling careers
         </h2>
       </div>
-      <div id="rightdiv" className="flex w-full justify-between h-screen">
+      <div ref={rightdiv} className="flex w-full justify-between h-screen">
         <div
-          id="leftdiv"
+          ref={leftdiv}
           className="left-content text-wrap pr-16 py-10 mb-16 max-w-2xl flex flex-col gap-12 *:my-12"
         >
           {services.map((service) => (

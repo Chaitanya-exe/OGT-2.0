@@ -12,8 +12,33 @@ import {
   headContentAnimation,
   headTextAnimation,
 } from "@/config/motion";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
 
 export default function Home() {
+
+  const textRef = useRef();
+
+
+ useGSAP(() => {
+    gsap.fromTo(
+      textRef.current.children,
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.4,
+        duration: 1.2,
+        scrollTrigger: {
+          trigger: textRef.current,
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        }
+      }
+    );
+  }, []);
+
   return (
     <main className="min-h-screen *:p-10  ">
       <motion.div className="max-w-5xl relative mt-16 mx-auto text-center flex flex-col gap-5 items-center">
@@ -24,13 +49,20 @@ export default function Home() {
           alt="svg"
           className="absolute -top-14 opacity-80 right-0 -z-10"
         />
-        <motion.h2 {...headTextAnimation} className="">
-          <span className="heroOgt text-white">OGT</span>
+        <div className="flex" >
+        <h1 ref={textRef} >
+          {'O G T'.split(' ').map((letter,i)=>(
+          <span className="heroOgt text-white">
+            {letter}
+          </span>
+
+          ))}
+        </h1>
           <span className="heroTxt">
             {" "}
             : Expert Remote Services for Your Business
           </span>
-        </motion.h2>
+        </div>
         <motion.h4
           {...headContentAnimation}
           className=" text-2xl text-center leading-[26px] px-20 tracking-wide"

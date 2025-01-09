@@ -38,7 +38,7 @@ const ProjectsList = () => {
             >
               <td>
                 {row.role}
-                <Link href={`/client/project/${row.role}`}>/^</Link>
+                <Link href={`/client/project/${row.role}/overview`}>/^////</Link>
               </td>
               <td>
                 <ul className="bg-l1 w-fit list-disc list-inside capitalize px-2 rounded-full text-sm">
