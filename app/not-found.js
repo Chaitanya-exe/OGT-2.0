@@ -9,7 +9,7 @@ const NotFound = () => {
   const router = useRouter();
   return (
     <div className="flex gap-3 flex-col items-center justify-center min-h-[500px] text-center">
-      <Image src={"/NotFound.png"} alt="nan" width={400} height={300} />
+      <Image src={"/images/NotFound.png"} alt="nan" width={400} height={300} />
       <div className=" *:p-3">
         <p className="text-[32px] font-medium">Error: 404 , Not Found</p>
         <button

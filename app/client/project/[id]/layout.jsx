@@ -20,7 +20,7 @@ const data = [
 
 const options = {
   title: "Project Completion Chart",
-  is3D: true,
+  // is3D: true,
   backgroundColor: "transparent",
   titleTextStyle: {
     color: "#FFFFFF",
@@ -84,7 +84,7 @@ const Layout = (props) => {
       <div className="flex ">
         {/* left sidebar */}
         <div className="fixed flex flex-col items-center bg-bgColor z-10 w-fit gap-6 py-4 px-2 border-white/20 border-r min-h-screen">
-          <Image src="/logo.png" width={70} height={70} alt="logo" />
+          <Image src="/images/logo.png" width={70} height={70} alt="logo" />
           <div className="pt-4 flex flex-col gap-10  ">
             <Tooltip title="Overview">
               <IconButton
@@ -102,7 +102,7 @@ const Layout = (props) => {
             <Tooltip title="Progress">
               <IconButton onClick={() => handleOnClick("progress")}>
                 <Image
-                  src="/Task.svg"
+                  src="/svg/Task.svg"
                   width={25}
                   height={25}
                   alt="logo"
@@ -117,7 +117,7 @@ const Layout = (props) => {
             <Tooltip title="Files">
               <IconButton onClick={() => handleOnClick("files")}>
                 <Image
-                  src="/files.svg"
+                  src="/svg/files.svg"
                   width={22}
                   height={22}
                   alt="logo"
@@ -130,14 +130,14 @@ const Layout = (props) => {
               </IconButton>
             </Tooltip>
             <Tooltip title="AI Suggestions">
-              <IconButton onClick={() => handleOnClick("aiSuggs")}>
+              <IconButton onClick={() => handleOnClick("aiSuggestions")}>
                 <Image
-                  src="/ai.svg"
+                  src="/svg/ai.svg"
                   width={22}
                   height={22}
                   alt="logo"
                   className={`${
-                   PathName === `${path}/aiSuggs`
+                   PathName === `${path}/aiSuggestions`
                       ? "opacity-100 border-b-2 pb-1 border-fuchsia-800"
                       : "opacity-70"
                   } hover:opacity-70`}
@@ -193,7 +193,7 @@ const Layout = (props) => {
                 <div className="flex items-center">
                   <IconButton>
                     <Image
-                      src={"/calender.svg"}
+                      src={"/svg/calender.svg"}
                       width={20}
                       height={20}
                       alt="calender"
@@ -207,7 +207,7 @@ const Layout = (props) => {
                 <div className="flex items-center">
                   <IconButton>
                     <Image
-                      src={"/calender.svg"}
+                      src={"/svg/calender.svg"}
                       width={20}
                       height={20}
                       alt="calender"

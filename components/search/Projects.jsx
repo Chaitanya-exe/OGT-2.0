@@ -44,7 +44,7 @@ export const ProjectCard = ({ project, index, setDEtailModal ,className}) => {
         </div>
         <div className="flex gap-4 items-center">
           {/* <MdBookmarkAdd className="size-5" /> */}
-          <Image src={"/Vector.svg"} width={12} height={12} alt="saveIcon" />
+          <Image src={"/svg/Vector.svg"} width={12} height={12} alt="saveIcon" />
           <button
             onClick={() => setDEtailModal(true)}
             className="text-sm underline"

@@ -8,7 +8,7 @@ const Index = () => {
     <div className="mx-8">
       <div className="flex gap-36 justify-between items-center">
         <h1 className='h1Video'>O G T, where finding Developers is a real Breeze</h1>
-        <Image src={"/Layer 2.png"} width={300} height={350} alt='Illus'/>
+        <Image src={"/images/Layer 2.png"} width={300} height={350} alt='Illus'/>
       </div>
       <Steps data={StepsData[0]} />
     </div>

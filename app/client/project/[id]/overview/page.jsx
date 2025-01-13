@@ -87,7 +87,7 @@ const Card = ({status,list}) => {
       {/* mapping */}
       <div>
       {list.map((task, i) => (
-        <div className="bg-bgColor my-1 p-2 lg:p-3 rounded border border-white/15  ">
+        <div key={i} className="bg-bgColor my-1 p-2 lg:p-3 rounded border border-white/15  ">
           <div className="flex items-start gap-10">
             <h3>{task.name}</h3>
             <span
@@ -104,15 +104,15 @@ const Card = ({status,list}) => {
           </div>
           <div className="flex mt-5 gap-12 items-center *:flex *:items-center *:gap-1">
             <div className="">
-              <Image src={"/Time.svg"} width={20} height={20} alt="icon" />
+              <Image src={"/svg/Time.svg"} width={20} height={20} alt="icon" />
               <span>{task.time_left}</span>
             </div>
             <div className="bg-white/10 rounded-xl px-2.5 py-1">
-              <Image src={"/link.svg"} width={18} height={18} alt="icon" />
+              <Image src={"/svg/link.svg"} width={18} height={18} alt="icon" />
               <span>{task.num_of_files}</span>
             </div>
             <div className="bg-white/10 rounded-xl px-2.5 py-1">
-              <Image src={"/comment.svg"} width={18} height={18} alt="icon" />
+              <Image src={"/svg/comment.svg"} width={18} height={18} alt="icon" />
               <span>{task.num_of_comments}</span>
             </div>
           </div>

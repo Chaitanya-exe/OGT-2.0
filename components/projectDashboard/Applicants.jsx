@@ -1,21 +1,17 @@
-"use client";
-
 
 import { FaStar } from "react-icons/fa6";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import React, { useState } from "react";
+import CustomSelect from "../CustomSelect";
 
 import { TiLocation } from "react-icons/ti";
-import ApplicantsDetail from "@/components/projectDashboard/ApplicantsDetail";
-import CustomSelect from "@/components/CustomSelect";
+import ApplicantsDetail from "./ApplicantsDetail";
 
-const Applicants = ({
-  openApplicantDetailSidebar,
-  setOpenApplicantDetailSidebar,
-}) => {
+const Applicants = ({openApplicantDetailSidebar,setOpenApplicantDetailSidebar}) => {
   const { data: session } = useSession();
   console.log(session);
+
 
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -60,11 +56,11 @@ const Applicants = ({
           <CandidateCard />
         )}
       </div>
-      {openApplicantDetailSidebar && (
-        <ApplicantsDetail
-          setOpenApplicantDetailSidebar={setOpenApplicantDetailSidebar}
-        />
-      )}
+{
+  openApplicantDetailSidebar && <ApplicantsDetail setOpenApplicantDetailSidebar={setOpenApplicantDetailSidebar} />
+}
+
+
     </div>
   );
 };
@@ -75,39 +71,35 @@ const CandidateCard = ({ data }) => {
   const [status, setStatus] = useState("Pending");
   return (
     <div className="flex flex-col gap-4 border border-white/30 rounded-[10px] p-4 my-2 bg-bgColor">
-      <div className="flex border-white/10 pb-2 border-b gap-3 w-full  ">
-        <Image
-          src={data?.user.img}
-          width={55}
-          height={10}
-          alt={data?.user.name.charAt(0)}
-          className="rounded-full"
+    <div className="flex border-white/10 pb-2 border-b gap-3 w-full  ">
+      <Image
+        src={data?.user.img}
+        width={55}
+        height={10}
+        alt={data?.user.name.charAt(0)}
+        className="rounded-full"
+      />
+      <div className="text-sm flex-1 leading-tight text-white/70">
+        <p className="text-white text-[16px]">Name</p>
+        <p className="">Role</p>
+        <p className="text-[12.3px]">
+          Appplied at{" "}
+          <span className="text-white text-[14px]"> 18 Nov 2024</span>
+        </p>
+      </div>
+      <div className="">
+        <CustomSelect
+          setValue={setStatus}
+          value={status}
+          menuItems={["Pending", "Accept", "Reject"]}
         />
-        <div className="text-sm flex-1 leading-tight text-white/70">
-          <p className="text-white text-[16px]">Name</p>
-          <p className="">Role</p>
-          <p className="text-[12.3px]">
-            Appplied at{" "}
-            <span className="text-white text-[14px]"> 18 Nov 2024</span>
-          </p>
-        </div>
-        <div className="">
-          <CustomSelect
-            setValue={setStatus}
-            value={status}
-            menuItems={["Pending", "Accept", "Reject"]}
-          />
-        </div>
       </div>
-      <div className="flex items-center gap-3 *:py-0.5 *:px-2 *:flex *:gap-1 *:items-center ">
-        <span className="border rounded-full border-white/20">
-          <FaStar className="inline-flex text-yellow-300 " /> 3.5 Overall
-        </span>
-        <span className="rounded-[5px] bg-l1/20">
-          <TiLocation className="inline-flex " />
-          India
-        </span>
-      </div>
+    </div>
+    <div className="flex items-center gap-3 *:py-0.5 *:px-2 *:flex *:gap-1 *:items-center ">
+      <span className="border rounded-full border-white/20"><FaStar className="inline-flex text-yellow-300 "/> 3.5 Overall</span>
+      <span className="rounded-[5px] bg-l1/20"><TiLocation className="inline-flex "/>India</span>
+    </div>
+
     </div>
   );
 };

@@ -52,7 +52,7 @@ export default function Home() {
         <div className="flex" >
         <h1 ref={textRef} >
           {'O G T'.split(' ').map((letter,i)=>(
-          <span className="heroOgt text-white">
+          <span key={i} className="heroOgt text-white">
             {letter}
           </span>
 

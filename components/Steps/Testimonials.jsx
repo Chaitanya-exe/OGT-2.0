@@ -71,7 +71,7 @@ const Card = ({ item, index }) => {
       className={`testiCard shadow-l2/10 shadow-lg  hover:shadow-[0px_2px_30px_#203752]`}
     >
       <div className="flex gap-2 items-center ">
-        <Image src={"/user.png"} width={40} height={40} alt="user" />
+        <Image src={"/images/user.png"} width={40} height={40} alt="user" />
         <h3 className="text-lg">{item.userName}</h3>
         <span className="text-BO text-sm">{item.company}</span>
       </div>

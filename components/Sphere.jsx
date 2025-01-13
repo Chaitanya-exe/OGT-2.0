@@ -17,7 +17,7 @@ const Sphere = () => {
         viewport={{once: true}}
         transition={{ duration: 2, delay: 0.8}}
         className="absolute -top-24 left-[25vw] -z-10">
-        <Image src={"/sphere.png"} alt="spere svg here" width={700} height={500} />
+        <Image src={"/images/sphere.png"} alt="spere svg here" width={700} height={500} />
       </motion.div>
       <div className="middleGrad left-[35vw] -z-50 " />
       <motion.h2 {...fadeAnimation} className="max-w-2xl lineClass pb-8">
@@ -49,7 +49,7 @@ const Boxes = () => {
       viewport={{ once: true }}
       className="bg-e1/10 flex flex-col gap-2.5 text-start p-2.5 border border-e1/20 rounded-[12px]"
     >
-      <Image src={"/Diary.png"} width={130} height={130} alt="icon" />
+      <Image src={"/images/Diary.png"} width={130} height={130} alt="icon" />
       <h2>No limitations</h2>
       <p>
         World is your oyster! Find or offer any Development service, anywhere.
