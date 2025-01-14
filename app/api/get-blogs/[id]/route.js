@@ -1,8 +1,6 @@
 import { fetchId, createError } from "@/utils";
-import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
-
-const userClient = new PrismaClient();
+import userClient from "@/utils/prisma"; 
 
 async function handler(req) {
     try {
@@ -11,7 +9,7 @@ async function handler(req) {
     } catch (error) {
         console.log(error);
         createError(error);
-        return Response.json({ error: error.message }, { status: 500 });
+        return NextResponse.json({ error: error.message }, { status: 500 });
     } finally {
         await userClient.$disconnect();
     }

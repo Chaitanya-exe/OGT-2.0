@@ -1,13 +1,14 @@
 import { projectsData } from "@/config/constants";
 import { PrismaClient } from "@prisma/client";
 import { createError } from "@/utils";
+import { NextResponse } from "next/server";
 const userClient = new PrismaClient();
+
+export const dynamic = "force-dynamic"
 
 export const GET = async (req) => {
   try {
-    const baseURL = "http://localhost:3000";
-    const url = new URL(req.url, baseURL);
-    const searchParams = url.searchParams;
+    const {searchParams} = req.nextUrl;
     const pageSize = 10;
 
     const category = searchParams.get("category");
@@ -44,7 +45,7 @@ export const GET = async (req) => {
       });
     } 
 
-    return Response.json({filteredProjects}, {
+    return NextResponse.json({filteredProjects}, {
       status: 200,
       headers: {
         "Content-Type": "application/json",
@@ -53,7 +54,7 @@ export const GET = async (req) => {
   } catch (error) {
     console.log("Error fetching products:", error);
     createError(error);
-    return Response.json({error: error.message}, {
+    return NextResponse.json({error: error.message}, {
       status: 500,
     });
   } finally{
